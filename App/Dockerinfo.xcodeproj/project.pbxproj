@@ -7,21 +7,41 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0531DCD91844070A007F0A96 /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0531DCD81844070A007F0A96 /* App.xib */; };
-		05322A49183406E2004D9AFE /* NSUserDefaults+Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 05322A48183406E2004D9AFE /* NSUserDefaults+Settings.m */; };
-		055819781834172E00B44B00 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055819771834172E00B44B00 /* LaunchAtLoginController.m */; };
-		059971961833394500EA6D8D /* Plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 059971951833394500EA6D8D /* Plugin.m */; };
 		0599719818333DB300EA6D8D /* PluginTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0599719718333DB300EA6D8D /* PluginTest.m */; };
-		05DAE007183323DD00409786 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE006183323DD00409786 /* AppDelegate.m */; };
-		05DAE02D1833274100409786 /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02C1833274100409786 /* PluginManager.m */; };
 		05DAE02F1833276C00409786 /* PluginManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02E1833276C00409786 /* PluginManagerTest.m */; };
-		05DB995C1C3D4B80008B5159 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05DB995B1C3D4B80008B5159 /* Images.xcassets */; };
+		227EB64C24FA72C70077F96E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 227EB64B24FA72C70077F96E /* Assets.xcassets */; };
+		227EB64D24FAD7AA0077F96E /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02C1833274100409786 /* PluginManager.m */; };
+		227EB64E24FAD7AB0077F96E /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02C1833274100409786 /* PluginManager.m */; };
+		227EB64F24FAD7AB0077F96E /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02C1833274100409786 /* PluginManager.m */; };
+		228B2F0B1EFFF73800B497F2 /* NSString+Emojize.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303D81C935BDE00AF5499 /* NSString+Emojize.m */; };
+		228B2F0C1EFFF73800B497F2 /* AHProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D03BB21C3D95E600A64968 /* AHProxy.m */; };
+		228B2F0D1EFFF73800B497F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE006183323DD00409786 /* AppDelegate.m */; };
+		228B2F0E1EFFF73800B497F2 /* DTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21581B9F0F10002539F7 /* DTConstants.m */; };
+		228B2F0F1EFFF73800B497F2 /* HTMLPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A281BDB71890670800C380A4 /* HTMLPlugin.m */; };
+		228B2F101EFFF73800B497F2 /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21501B9F0BE6002539F7 /* STPrivilegedTask.m */; };
+		228B2F111EFFF73800B497F2 /* ExecutablePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A281BDB4189066DE00C380A4 /* ExecutablePlugin.m */; };
+		228B2F121EFFF73800B497F2 /* DTTimePeriodGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21621B9F0F10002539F7 /* DTTimePeriodGroup.m */; };
+		228B2F131EFFF73800B497F2 /* NSTask+useSystemProxies.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D03BB61C3D95E600A64968 /* NSTask+useSystemProxies.m */; };
+		228B2F141EFFF73800B497F2 /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02C1833274100409786 /* PluginManager.m */; };
+		228B2F151EFFF73800B497F2 /* DTError.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A215A1B9F0F10002539F7 /* DTError.m */; };
+		228B2F161EFFF73800B497F2 /* DTTimePeriodCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21601B9F0F10002539F7 /* DTTimePeriodCollection.m */; };
+		228B2F171EFFF73800B497F2 /* NSUserDefaults+Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 05322A48183406E2004D9AFE /* NSUserDefaults+Settings.m */; };
+		228B2F181EFFF73800B497F2 /* NSDate+DateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21641B9F0F10002539F7 /* NSDate+DateTools.m */; };
+		228B2F191EFFF73800B497F2 /* NSColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = A22AF328189F823E0011DFCD /* NSColor+Hex.m */; };
+		228B2F1A1EFFF73800B497F2 /* Plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 059971951833394500EA6D8D /* Plugin.m */; };
+		228B2F1B1EFFF73800B497F2 /* DTTimePeriodChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A215E1B9F0F10002539F7 /* DTTimePeriodChain.m */; };
+		228B2F1C1EFFF73800B497F2 /* NSString+ANSI.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303EC1C93984C00AF5499 /* NSString+ANSI.m */; };
+		228B2F1D1EFFF73800B497F2 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 055819771834172E00B44B00 /* LaunchAtLoginController.m */; };
+		228B2F1E1EFFF73800B497F2 /* AHProxySettings.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D03BB41C3D95E600A64968 /* AHProxySettings.m */; };
+		228B2F1F1EFFF73800B497F2 /* DTTimePeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A215C1B9F0F10002539F7 /* DTTimePeriod.m */; };
+		228B2F211EFFF73800B497F2 /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0531DCD81844070A007F0A96 /* App.xib */; };
+		228B2F231EFFF73800B497F2 /* DateTools.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7B9A21551B9F0F10002539F7 /* DateTools.bundle */; };
+		22A8C7E11F08BFC800DCB475 /* PFMoveApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A8C7DF1F08BFC800DCB475 /* PFMoveApplication.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		22A8C7E41F08C05300DCB475 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A8C7E31F08C05300DCB475 /* Security.framework */; };
 		36372DCC1C9424DB0005EB32 /* PluginTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0599719718333DB300EA6D8D /* PluginTest.m */; };
 		36372DCE1C9424DB0005EB32 /* PluginManagerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02E1833276C00409786 /* PluginManagerTest.m */; };
 		36372DCF1C9424DB0005EB32 /* PluginManager+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303DF1C93848400AF5499 /* PluginManager+Test.m */; };
 		36372DD21C9424DB0005EB32 /* TestPlugins in Resources */ = {isa = PBXBuildFile; fileRef = AE7303DC1C93721600AF5499 /* TestPlugins */; };
-		36D0CE0A1D0AF012001AFB77 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36D0CDFF1D0AF009001AFB77 /* Sparkle.framework */; };
-		36D0CE0B1D0AF012001AFB77 /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 36D0CDFF1D0AF009001AFB77 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		36D0CE101D0AF018001AFB77 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36D0CDFF1D0AF009001AFB77 /* Sparkle.framework */; };
 		36D0CE111D0AF019001AFB77 /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 36D0CDFF1D0AF009001AFB77 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		36DCD8BE1C76027C004DE286 /* AHProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D03BB21C3D95E600A64968 /* AHProxy.m */; };
@@ -32,7 +52,6 @@
 		36DCD8C31C76027C004DE286 /* ExecutablePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A281BDB4189066DE00C380A4 /* ExecutablePlugin.m */; };
 		36DCD8C41C76027C004DE286 /* DTTimePeriodGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21621B9F0F10002539F7 /* DTTimePeriodGroup.m */; };
 		36DCD8C51C76027C004DE286 /* NSTask+useSystemProxies.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D03BB61C3D95E600A64968 /* NSTask+useSystemProxies.m */; };
-		36DCD8C61C76027C004DE286 /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02C1833274100409786 /* PluginManager.m */; };
 		36DCD8C71C76027C004DE286 /* DTError.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A215A1B9F0F10002539F7 /* DTError.m */; };
 		36DCD8C81C76027C004DE286 /* DTTimePeriodCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21601B9F0F10002539F7 /* DTTimePeriodCollection.m */; };
 		36DCD8C91C76027C004DE286 /* NSUserDefaults+Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = 05322A48183406E2004D9AFE /* NSUserDefaults+Settings.m */; };
@@ -44,26 +63,10 @@
 		36DCD8CF1C76027C004DE286 /* AHProxySettings.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D03BB41C3D95E600A64968 /* AHProxySettings.m */; };
 		36DCD8D01C76027C004DE286 /* DTTimePeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A215C1B9F0F10002539F7 /* DTTimePeriod.m */; };
 		36DCD8D21C76027C004DE286 /* App.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0531DCD81844070A007F0A96 /* App.xib */; };
-		36DCD8D31C76027C004DE286 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05DB995B1C3D4B80008B5159 /* Images.xcassets */; };
 		36DCD8D41C76027C004DE286 /* DateTools.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7B9A21551B9F0F10002539F7 /* DateTools.bundle */; };
-		7B9A21531B9F0BE6002539F7 /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21501B9F0BE6002539F7 /* STPrivilegedTask.m */; };
-		7B9A21651B9F0F10002539F7 /* DateTools.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7B9A21551B9F0F10002539F7 /* DateTools.bundle */; };
-		7B9A21661B9F0F10002539F7 /* DTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21581B9F0F10002539F7 /* DTConstants.m */; };
-		7B9A21671B9F0F10002539F7 /* DTError.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A215A1B9F0F10002539F7 /* DTError.m */; };
-		7B9A21681B9F0F10002539F7 /* DTTimePeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A215C1B9F0F10002539F7 /* DTTimePeriod.m */; };
-		7B9A21691B9F0F10002539F7 /* DTTimePeriodChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A215E1B9F0F10002539F7 /* DTTimePeriodChain.m */; };
-		7B9A216A1B9F0F10002539F7 /* DTTimePeriodCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21601B9F0F10002539F7 /* DTTimePeriodCollection.m */; };
-		7B9A216B1B9F0F10002539F7 /* DTTimePeriodGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21621B9F0F10002539F7 /* DTTimePeriodGroup.m */; };
-		7B9A216C1B9F0F10002539F7 /* NSDate+DateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9A21641B9F0F10002539F7 /* NSDate+DateTools.m */; };
-		A22AF329189F823E0011DFCD /* NSColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = A22AF328189F823E0011DFCD /* NSColor+Hex.m */; };
-		A281BDB5189066DE00C380A4 /* ExecutablePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A281BDB4189066DE00C380A4 /* ExecutablePlugin.m */; };
-		A281BDB81890670800C380A4 /* HTMLPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A281BDB71890670800C380A4 /* HTMLPlugin.m */; };
-		AE3C167A1C93F71B009AF7CA /* NSString+Emojize.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303D81C935BDE00AF5499 /* NSString+Emojize.m */; };
 		AE4B1E391C9B2B0F009540AD /* NSString+ANSI.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303EC1C93984C00AF5499 /* NSString+ANSI.m */; };
-		AE4B1E4D1C9C631B009540AD /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02C1833274100409786 /* PluginManager.m */; };
 		AE4B1E4E1C9C631B009540AD /* Plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 059971951833394500EA6D8D /* Plugin.m */; };
 		AE4B1E4F1C9C631B009540AD /* ExecutablePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A281BDB4189066DE00C380A4 /* ExecutablePlugin.m */; };
-		AE4B1E501C9C632A009540AD /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02C1833274100409786 /* PluginManager.m */; };
 		AE4B1E511C9C632A009540AD /* Plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 059971951833394500EA6D8D /* Plugin.m */; };
 		AE4B1E521C9C632A009540AD /* ExecutablePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A281BDB4189066DE00C380A4 /* ExecutablePlugin.m */; };
 		AE4B1E531C9C6351009540AD /* HTMLPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = A281BDB71890670800C380A4 /* HTMLPlugin.m */; };
@@ -103,19 +106,15 @@
 		AE7303DB1C935BDE00AF5499 /* NSString+Emojize.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303D81C935BDE00AF5499 /* NSString+Emojize.m */; };
 		AE7303DD1C93721600AF5499 /* TestPlugins in Resources */ = {isa = PBXBuildFile; fileRef = AE7303DC1C93721600AF5499 /* TestPlugins */; };
 		AE7303E01C93848400AF5499 /* PluginManager+Test.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303DF1C93848400AF5499 /* PluginManager+Test.m */; };
-		AE7303ED1C93984C00AF5499 /* NSString+ANSI.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303EC1C93984C00AF5499 /* NSString+ANSI.m */; };
-		F8D03BB71C3D95E600A64968 /* AHProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D03BB21C3D95E600A64968 /* AHProxy.m */; };
-		F8D03BB81C3D95E600A64968 /* AHProxySettings.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D03BB41C3D95E600A64968 /* AHProxySettings.m */; };
-		F8D03BB91C3D95E600A64968 /* NSTask+useSystemProxies.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D03BB61C3D95E600A64968 /* NSTask+useSystemProxies.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		05DAE015183323DD00409786 /* PBXContainerItemProxy */ = {
+		228B2F351EFFF73800B497F2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 05DADFE8183323DD00409786 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 05DADFEF183323DD00409786;
-			remoteInfo = BitBar;
+			containerPortal = 36D0CDF21D0AF009001AFB77 /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 722954B41D04ADAF00ECF9CA;
+			remoteInfo = fileop;
 		};
 		36372DC01C9424DB0005EB32 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -166,13 +165,6 @@
 			remoteGlobalIDString = 726B2B5D1C645FC900388755;
 			remoteInfo = "UI Tests";
 		};
-		36D0CE0C1D0AF012001AFB77 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36D0CDF21D0AF009001AFB77 /* Sparkle.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
-			remoteInfo = Sparkle;
-		};
 		36D0CE121D0AF019001AFB77 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36D0CDF21D0AF009001AFB77 /* Sparkle.xcodeproj */;
@@ -183,17 +175,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		36D0CE0F1D0AF013001AFB77 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				36D0CE0B1D0AF012001AFB77 /* Sparkle.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		36D0CE151D0AF019001AFB77 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -217,18 +198,24 @@
 		059971941833394500EA6D8D /* Plugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plugin.h; sourceTree = "<group>"; };
 		059971951833394500EA6D8D /* Plugin.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Plugin.m; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0599719718333DB300EA6D8D /* PluginTest.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PluginTest.m; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		05DADFF0183323DD00409786 /* BitBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		05DADFFB183323DD00409786 /* BitBar-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BitBar-Info.plist"; sourceTree = "<group>"; };
+		05DADFFB183323DD00409786 /* Dockerinfo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Dockerinfo-Info.plist"; sourceTree = "<group>"; };
 		05DAE006183323DD00409786 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = BitBar/AppDelegate.m; sourceTree = "<group>"; };
-		05DAE011183323DD00409786 /* BitBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BitBarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		05DAE019183323DD00409786 /* BitBarTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BitBarTests-Info.plist"; sourceTree = "<group>"; };
+		05DAE011183323DD00409786 /* DockerinfoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DockerinfoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		05DAE019183323DD00409786 /* DockerinfoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DockerinfoTests-Info.plist"; sourceTree = "<group>"; };
 		05DAE02B1833274100409786 /* PluginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PluginManager.h; sourceTree = "<group>"; };
 		05DAE02C1833274100409786 /* PluginManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PluginManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		05DAE02E1833276C00409786 /* PluginManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PluginManagerTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		05DB995B1C3D4B80008B5159 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		36372DD61C9424DB0005EB32 /* BitBarDistroTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BitBarDistroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		227EB64824FA3CB40077F96E /* Dockerinfo.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Dockerinfo.entitlements; sourceTree = "<group>"; };
+		227EB64B24FA72C70077F96E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		228B2F2B1EFFF73800B497F2 /* Dockerinfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dockerinfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		228B2F371EFFF73900B497F2 /* Dockerinfo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Dockerinfo-Info.plist"; path = "/Users/frak/Documents/XcodeProjects/bitbar/bitbar_master/bitbar/App/Dockerinfo-Info.plist"; sourceTree = "<absolute>"; };
+		22A8C7DE1F08BFC800DCB475 /* PFMoveApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMoveApplication.h; sourceTree = "<group>"; };
+		22A8C7DF1F08BFC800DCB475 /* PFMoveApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PFMoveApplication.m; sourceTree = "<group>"; };
+		22A8C7E31F08C05300DCB475 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		22CCDDFC1F00812B006EA7FA /* BitBarDistro copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "BitBarDistro copy-Info.plist"; path = "/Users/frak/Documents/XcodeProjects/bitbar/bitbar_master/bitbar/App/BitBarDistro copy-Info.plist"; sourceTree = "<absolute>"; };
+		36372DD61C9424DB0005EB32 /* DockerinfoDistroTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DockerinfoDistroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		36D0CDF21D0AF009001AFB77 /* Sparkle.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Sparkle.xcodeproj; path = Vendor/Sparkle/Sparkle.xcodeproj; sourceTree = SOURCE_ROOT; };
-		36DCD8D81C76027C004DE286 /* BitBarDistro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitBarDistro.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		36DCD8D81C76027C004DE286 /* DockerinfoDistro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DockerinfoDistro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B5D08F91BA8EF6300400886 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../../README.md; sourceTree = "<group>"; };
 		7B9A214F1B9F0BE6002539F7 /* STPrivilegedTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STPrivilegedTask.h; path = Vendor/STPrivilegedTask/STPrivilegedTask.h; sourceTree = SOURCE_ROOT; };
 		7B9A21501B9F0BE6002539F7 /* STPrivilegedTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STPrivilegedTask.m; path = Vendor/STPrivilegedTask/STPrivilegedTask.m; sourceTree = SOURCE_ROOT; };
@@ -278,18 +265,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		228B2F241EFFF73800B497F2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				22A8C7E41F08C05300DCB475 /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		36372DD01C9424DB0005EB32 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		36D0CE0E1D0AF013001AFB77 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				36D0CE0A1D0AF012001AFB77 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +331,7 @@
 		05DADFE7183323DD00409786 = {
 			isa = PBXGroup;
 			children = (
+				227EB64824FA3CB40077F96E /* Dockerinfo.entitlements */,
 				05DAE006183323DD00409786 /* AppDelegate.m */,
 				05DAE0271833241D00409786 /* Plugins */,
 				05322A46183406D7004D9AFE /* Settings */,
@@ -352,6 +340,9 @@
 				05DADFFA183323DD00409786 /* Supporting Files */,
 				05DAE017183323DD00409786 /* BitBarTests */,
 				05DADFF1183323DD00409786 /* Products */,
+				228B2F371EFFF73900B497F2 /* Dockerinfo-Info.plist */,
+				22CCDDFC1F00812B006EA7FA /* BitBarDistro copy-Info.plist */,
+				22A8C7E21F08C05300DCB475 /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -360,10 +351,10 @@
 		05DADFF1183323DD00409786 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				05DADFF0183323DD00409786 /* BitBar.app */,
-				05DAE011183323DD00409786 /* BitBarTests.xctest */,
-				36DCD8D81C76027C004DE286 /* BitBarDistro.app */,
-				36372DD61C9424DB0005EB32 /* BitBarDistroTests.xctest */,
+				05DAE011183323DD00409786 /* DockerinfoTests.xctest */,
+				36DCD8D81C76027C004DE286 /* DockerinfoDistro.app */,
+				36372DD61C9424DB0005EB32 /* DockerinfoDistroTests.xctest */,
+				228B2F2B1EFFF73800B497F2 /* Dockerinfo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -371,9 +362,9 @@
 		05DADFFA183323DD00409786 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				05DB995B1C3D4B80008B5159 /* Images.xcassets */,
+				227EB64B24FA72C70077F96E /* Assets.xcassets */,
 				7B5D08F91BA8EF6300400886 /* README.md */,
-				05DADFFB183323DD00409786 /* BitBar-Info.plist */,
+				05DADFFB183323DD00409786 /* Dockerinfo-Info.plist */,
 				0531DCD81844070A007F0A96 /* App.xib */,
 				05590ACE1C3E74C100352E77 /* CHANGELOG.md */,
 			);
@@ -396,7 +387,7 @@
 		05DAE018183323DD00409786 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				05DAE019183323DD00409786 /* BitBarTests-Info.plist */,
+				05DAE019183323DD00409786 /* DockerinfoTests-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -404,6 +395,8 @@
 		05DAE0271833241D00409786 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				22A8C7DE1F08BFC800DCB475 /* PFMoveApplication.h */,
+				22A8C7DF1F08BFC800DCB475 /* PFMoveApplication.m */,
 				05DAE02B1833274100409786 /* PluginManager.h */,
 				05DAE02C1833274100409786 /* PluginManager.m */,
 				059971941833394500EA6D8D /* Plugin.h */,
@@ -417,6 +410,14 @@
 			path = BitBar;
 			sourceTree = "<group>";
 		};
+		22A8C7E21F08C05300DCB475 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				22A8C7E31F08C05300DCB475 /* Security.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		36D0CDF31D0AF009001AFB77 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -426,6 +427,7 @@
 				36D0CE051D0AF009001AFB77 /* BinaryDelta */,
 				36D0CE071D0AF009001AFB77 /* Autoupdate.app */,
 				36D0CE091D0AF009001AFB77 /* UI Tests.xctest */,
+				228B2F361EFFF73800B497F2 /* fileop */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -501,28 +503,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		05DADFEF183323DD00409786 /* BitBar */ = {
+		05DAE010183323DD00409786 /* DockerinfoTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 05DAE021183323DD00409786 /* Build configuration list for PBXNativeTarget "BitBar" */;
-			buildPhases = (
-				05DADFEC183323DD00409786 /* Sources */,
-				05DADFEE183323DD00409786 /* Resources */,
-				36D0CE0E1D0AF013001AFB77 /* Frameworks */,
-				36D0CE0F1D0AF013001AFB77 /* Embed Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				36D0CE0D1D0AF012001AFB77 /* PBXTargetDependency */,
-			);
-			name = BitBar;
-			productName = BitBar;
-			productReference = 05DADFF0183323DD00409786 /* BitBar.app */;
-			productType = "com.apple.product-type.application";
-		};
-		05DAE010183323DD00409786 /* BitBarTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 05DAE024183323DD00409786 /* Build configuration list for PBXNativeTarget "BitBarTests" */;
+			buildConfigurationList = 05DAE024183323DD00409786 /* Build configuration list for PBXNativeTarget "DockerinfoTests" */;
 			buildPhases = (
 				05DAE00D183323DD00409786 /* Sources */,
 				05DAE00E183323DD00409786 /* Frameworks */,
@@ -531,16 +514,32 @@
 			buildRules = (
 			);
 			dependencies = (
-				05DAE016183323DD00409786 /* PBXTargetDependency */,
 			);
-			name = BitBarTests;
+			name = DockerinfoTests;
 			productName = BitBarTests;
-			productReference = 05DAE011183323DD00409786 /* BitBarTests.xctest */;
+			productReference = 05DAE011183323DD00409786 /* DockerinfoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		36372DBC1C9424DB0005EB32 /* BitBarDistroTests */ = {
+		228B2F071EFFF73800B497F2 /* Dockerinfo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 36372DD31C9424DB0005EB32 /* Build configuration list for PBXNativeTarget "BitBarDistroTests" */;
+			buildConfigurationList = 228B2F281EFFF73800B497F2 /* Build configuration list for PBXNativeTarget "Dockerinfo" */;
+			buildPhases = (
+				228B2F0A1EFFF73800B497F2 /* Sources */,
+				228B2F201EFFF73800B497F2 /* Resources */,
+				228B2F241EFFF73800B497F2 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Dockerinfo;
+			productName = BitBar;
+			productReference = 228B2F2B1EFFF73800B497F2 /* Dockerinfo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		36372DBC1C9424DB0005EB32 /* DockerinfoDistroTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 36372DD31C9424DB0005EB32 /* Build configuration list for PBXNativeTarget "DockerinfoDistroTests" */;
 			buildPhases = (
 				36372DC11C9424DB0005EB32 /* Sources */,
 				36372DD01C9424DB0005EB32 /* Frameworks */,
@@ -551,14 +550,14 @@
 			dependencies = (
 				36372DBF1C9424DB0005EB32 /* PBXTargetDependency */,
 			);
-			name = BitBarDistroTests;
+			name = DockerinfoDistroTests;
 			productName = BitBarTests;
-			productReference = 36372DD61C9424DB0005EB32 /* BitBarDistroTests.xctest */;
+			productReference = 36372DD61C9424DB0005EB32 /* DockerinfoDistroTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		36DCD8BC1C76027C004DE286 /* BitBarDistro */ = {
+		36DCD8BC1C76027C004DE286 /* DockerinfoDistro */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 36DCD8D51C76027C004DE286 /* Build configuration list for PBXNativeTarget "BitBarDistro" */;
+			buildConfigurationList = 36DCD8D51C76027C004DE286 /* Build configuration list for PBXNativeTarget "DockerinfoDistro" */;
 			buildPhases = (
 				36DCD8BD1C76027C004DE286 /* Sources */,
 				36DCD8D11C76027C004DE286 /* Resources */,
@@ -570,9 +569,9 @@
 			dependencies = (
 				36D0CE131D0AF019001AFB77 /* PBXTargetDependency */,
 			);
-			name = BitBarDistro;
+			name = DockerinfoDistro;
 			productName = BitBar;
-			productReference = 36DCD8D81C76027C004DE286 /* BitBarDistro.app */;
+			productReference = 36DCD8D81C76027C004DE286 /* DockerinfoDistro.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -581,25 +580,27 @@
 		05DADFE8183323DD00409786 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
-				ORGANIZATIONNAME = "Bit Bar";
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = fraksoft;
 				TargetAttributes = {
-					05DADFEF183323DD00409786 = {
-						SystemCapabilities = {
-							com.apple.Sandbox = {
-								enabled = 0;
-							};
-						};
-					};
 					05DAE010183323DD00409786 = {
 						TestTargetID = 05DADFEF183323DD00409786;
+					};
+					228B2F071EFFF73800B497F2 = {
+						DevelopmentTeam = 7G2GKABE9F;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					36372DBC1C9424DB0005EB32 = {
 						TestTargetID = 36DCD8BC1C76027C004DE286;
 					};
 				};
 			};
-			buildConfigurationList = 05DADFEB183323DD00409786 /* Build configuration list for PBXProject "BitBar" */;
+			buildConfigurationList = 05DADFEB183323DD00409786 /* Build configuration list for PBXProject "Dockerinfo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -618,15 +619,22 @@
 			);
 			projectRoot = "";
 			targets = (
-				05DADFEF183323DD00409786 /* BitBar */,
-				05DAE010183323DD00409786 /* BitBarTests */,
-				36DCD8BC1C76027C004DE286 /* BitBarDistro */,
-				36372DBC1C9424DB0005EB32 /* BitBarDistroTests */,
+				05DAE010183323DD00409786 /* DockerinfoTests */,
+				36DCD8BC1C76027C004DE286 /* DockerinfoDistro */,
+				36372DBC1C9424DB0005EB32 /* DockerinfoDistroTests */,
+				228B2F071EFFF73800B497F2 /* Dockerinfo */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		228B2F361EFFF73800B497F2 /* fileop */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = fileop;
+			remoteRef = 228B2F351EFFF73800B497F2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		36D0CDFF1D0AF009001AFB77 /* Sparkle.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -672,21 +680,21 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		05DADFEE183323DD00409786 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0531DCD91844070A007F0A96 /* App.xib in Resources */,
-				05DB995C1C3D4B80008B5159 /* Images.xcassets in Resources */,
-				7B9A21651B9F0F10002539F7 /* DateTools.bundle in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		05DAE00F183323DD00409786 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				AE7303DD1C93721600AF5499 /* TestPlugins in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		228B2F201EFFF73800B497F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				228B2F211EFFF73800B497F2 /* App.xib in Resources */,
+				227EB64C24FA72C70077F96E /* Assets.xcassets in Resources */,
+				228B2F231EFFF73800B497F2 /* DateTools.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -703,7 +711,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				36DCD8D21C76027C004DE286 /* App.xib in Resources */,
-				36DCD8D31C76027C004DE286 /* Images.xcassets in Resources */,
 				36DCD8D41C76027C004DE286 /* DateTools.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -711,34 +718,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		05DADFEC183323DD00409786 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AE3C167A1C93F71B009AF7CA /* NSString+Emojize.m in Sources */,
-				F8D03BB71C3D95E600A64968 /* AHProxy.m in Sources */,
-				05DAE007183323DD00409786 /* AppDelegate.m in Sources */,
-				7B9A21661B9F0F10002539F7 /* DTConstants.m in Sources */,
-				A281BDB81890670800C380A4 /* HTMLPlugin.m in Sources */,
-				7B9A21531B9F0BE6002539F7 /* STPrivilegedTask.m in Sources */,
-				A281BDB5189066DE00C380A4 /* ExecutablePlugin.m in Sources */,
-				7B9A216B1B9F0F10002539F7 /* DTTimePeriodGroup.m in Sources */,
-				F8D03BB91C3D95E600A64968 /* NSTask+useSystemProxies.m in Sources */,
-				05DAE02D1833274100409786 /* PluginManager.m in Sources */,
-				7B9A21671B9F0F10002539F7 /* DTError.m in Sources */,
-				7B9A216A1B9F0F10002539F7 /* DTTimePeriodCollection.m in Sources */,
-				05322A49183406E2004D9AFE /* NSUserDefaults+Settings.m in Sources */,
-				7B9A216C1B9F0F10002539F7 /* NSDate+DateTools.m in Sources */,
-				A22AF329189F823E0011DFCD /* NSColor+Hex.m in Sources */,
-				059971961833394500EA6D8D /* Plugin.m in Sources */,
-				7B9A21691B9F0F10002539F7 /* DTTimePeriodChain.m in Sources */,
-				AE7303ED1C93984C00AF5499 /* NSString+ANSI.m in Sources */,
-				055819781834172E00B44B00 /* LaunchAtLoginController.m in Sources */,
-				F8D03BB81C3D95E600A64968 /* AHProxySettings.m in Sources */,
-				7B9A21681B9F0F10002539F7 /* DTTimePeriod.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		05DAE00D183323DD00409786 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -758,14 +737,43 @@
 				AE4B1E5F1C9C6351009540AD /* DTTimePeriodGroup.m in Sources */,
 				AE4B1E601C9C6351009540AD /* NSDate+DateTools.m in Sources */,
 				AE4B1E611C9C6351009540AD /* STPrivilegedTask.m in Sources */,
+				227EB64D24FAD7AA0077F96E /* PluginManager.m in Sources */,
 				AE4B1E621C9C6351009540AD /* LaunchAtLoginController.m in Sources */,
 				AE4B1E631C9C6351009540AD /* NSColor+Hex.m in Sources */,
-				AE4B1E4D1C9C631B009540AD /* PluginManager.m in Sources */,
 				AE4B1E4E1C9C631B009540AD /* Plugin.m in Sources */,
 				AE4B1E4F1C9C631B009540AD /* ExecutablePlugin.m in Sources */,
 				0599719818333DB300EA6D8D /* PluginTest.m in Sources */,
 				05DAE02F1833276C00409786 /* PluginManagerTest.m in Sources */,
 				AE7303E01C93848400AF5499 /* PluginManager+Test.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		228B2F0A1EFFF73800B497F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				228B2F0B1EFFF73800B497F2 /* NSString+Emojize.m in Sources */,
+				228B2F0C1EFFF73800B497F2 /* AHProxy.m in Sources */,
+				228B2F0D1EFFF73800B497F2 /* AppDelegate.m in Sources */,
+				228B2F0E1EFFF73800B497F2 /* DTConstants.m in Sources */,
+				228B2F0F1EFFF73800B497F2 /* HTMLPlugin.m in Sources */,
+				228B2F101EFFF73800B497F2 /* STPrivilegedTask.m in Sources */,
+				228B2F111EFFF73800B497F2 /* ExecutablePlugin.m in Sources */,
+				228B2F121EFFF73800B497F2 /* DTTimePeriodGroup.m in Sources */,
+				228B2F131EFFF73800B497F2 /* NSTask+useSystemProxies.m in Sources */,
+				228B2F141EFFF73800B497F2 /* PluginManager.m in Sources */,
+				228B2F151EFFF73800B497F2 /* DTError.m in Sources */,
+				228B2F161EFFF73800B497F2 /* DTTimePeriodCollection.m in Sources */,
+				228B2F171EFFF73800B497F2 /* NSUserDefaults+Settings.m in Sources */,
+				228B2F181EFFF73800B497F2 /* NSDate+DateTools.m in Sources */,
+				228B2F191EFFF73800B497F2 /* NSColor+Hex.m in Sources */,
+				22A8C7E11F08BFC800DCB475 /* PFMoveApplication.m in Sources */,
+				228B2F1A1EFFF73800B497F2 /* Plugin.m in Sources */,
+				228B2F1B1EFFF73800B497F2 /* DTTimePeriodChain.m in Sources */,
+				228B2F1C1EFFF73800B497F2 /* NSString+ANSI.m in Sources */,
+				228B2F1D1EFFF73800B497F2 /* LaunchAtLoginController.m in Sources */,
+				228B2F1E1EFFF73800B497F2 /* AHProxySettings.m in Sources */,
+				228B2F1F1EFFF73800B497F2 /* DTTimePeriod.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -788,9 +796,9 @@
 				AE4B1E701C9C636A009540AD /* DTTimePeriodGroup.m in Sources */,
 				AE4B1E711C9C636A009540AD /* NSDate+DateTools.m in Sources */,
 				AE4B1E721C9C636A009540AD /* STPrivilegedTask.m in Sources */,
+				227EB64F24FAD7AB0077F96E /* PluginManager.m in Sources */,
 				AE4B1E731C9C636A009540AD /* LaunchAtLoginController.m in Sources */,
 				AE4B1E741C9C636A009540AD /* NSColor+Hex.m in Sources */,
-				AE4B1E501C9C632A009540AD /* PluginManager.m in Sources */,
 				AE4B1E511C9C632A009540AD /* Plugin.m in Sources */,
 				AE4B1E521C9C632A009540AD /* ExecutablePlugin.m in Sources */,
 				36372DCC1C9424DB0005EB32 /* PluginTest.m in Sources */,
@@ -807,11 +815,11 @@
 				36DCD8BF1C76027C004DE286 /* AppDelegate.m in Sources */,
 				36DCD8C01C76027C004DE286 /* DTConstants.m in Sources */,
 				36DCD8C11C76027C004DE286 /* HTMLPlugin.m in Sources */,
+				227EB64E24FAD7AB0077F96E /* PluginManager.m in Sources */,
 				36DCD8C21C76027C004DE286 /* STPrivilegedTask.m in Sources */,
 				36DCD8C31C76027C004DE286 /* ExecutablePlugin.m in Sources */,
 				36DCD8C41C76027C004DE286 /* DTTimePeriodGroup.m in Sources */,
 				36DCD8C51C76027C004DE286 /* NSTask+useSystemProxies.m in Sources */,
-				36DCD8C61C76027C004DE286 /* PluginManager.m in Sources */,
 				36DCD8C71C76027C004DE286 /* DTError.m in Sources */,
 				36DCD8C81C76027C004DE286 /* DTTimePeriodCollection.m in Sources */,
 				36DCD8C91C76027C004DE286 /* NSUserDefaults+Settings.m in Sources */,
@@ -830,20 +838,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		05DAE016183323DD00409786 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 05DADFEF183323DD00409786 /* BitBar */;
-			targetProxy = 05DAE015183323DD00409786 /* PBXContainerItemProxy */;
-		};
 		36372DBF1C9424DB0005EB32 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 36DCD8BC1C76027C004DE286 /* BitBarDistro */;
+			target = 36DCD8BC1C76027C004DE286 /* DockerinfoDistro */;
 			targetProxy = 36372DC01C9424DB0005EB32 /* PBXContainerItemProxy */;
-		};
-		36D0CE0D1D0AF012001AFB77 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Sparkle;
-			targetProxy = 36D0CE0C1D0AF012001AFB77 /* PBXContainerItemProxy */;
 		};
 		36D0CE131D0AF019001AFB77 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -866,14 +864,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -905,14 +908,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = c11;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -921,36 +929,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
-			};
-			name = Release;
-		};
-		05DAE022183323DD00409786 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "BitBar/BitBar-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.matryer.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		05DAE023183323DD00409786 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "BitBar/BitBar-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.matryer.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
@@ -968,10 +946,10 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "BitBarTests/BitBarTests-Info.plist";
+				INFOPLIST_FILE = "BitBarTests/DockerinfoTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bitbarapp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BitBar.app/Contents/MacOS/BitBar";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dockerinfo.app/Contents/MacOS/Dockerinfo";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -986,11 +964,57 @@
 					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				INFOPLIST_FILE = "BitBarTests/BitBarTests-Info.plist";
+				INFOPLIST_FILE = "BitBarTests/DockerinfoTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bitbarapp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BitBar.app/Contents/MacOS/BitBar";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dockerinfo.app/Contents/MacOS/Dockerinfo";
 				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+		228B2F291EFFF73800B497F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Dockerinfo.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 7G2GKABE9F;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					DISTRO,
+				);
+				INFOPLIST_FILE = "Frakalog-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--deep --force";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fraksoft.Dockerinfo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		228B2F2A1EFFF73800B497F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Dockerinfo.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 7G2GKABE9F;
+				GCC_PREPROCESSOR_DEFINITIONS = DISTRO;
+				INFOPLIST_FILE = "Frakalog-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--deep --force";
+				PRODUCT_BUNDLE_IDENTIFIER = com.fraksoft.Dockerinfo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
@@ -1009,10 +1033,10 @@
 					"$(inherited)",
 					DISTRO,
 				);
-				INFOPLIST_FILE = "BitBarTests/BitBarTests-Info.plist";
+				INFOPLIST_FILE = "BitBarTests/DockerinfoTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bitbarapp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BitBarDistro.app/Contents/MacOS/BitBarDistro";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DockerinfoDistro.app/Contents/MacOS/DockerinfoDistro";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -1028,10 +1052,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = DISTRO;
-				INFOPLIST_FILE = "BitBarTests/BitBarTests-Info.plist";
+				INFOPLIST_FILE = "BitBarTests/DockerinfoTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bitbarapp.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BitBarDistro.app/Contents/MacOS/BitBarDistro";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DockerinfoDistro.app/Contents/MacOS/DockerinfoDistro";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
@@ -1046,7 +1070,7 @@
 					"$(inherited)",
 					DISTRO,
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/BitBar/BitBar-Info.plist";
+				INFOPLIST_FILE = "BitBar/Dockerinfo-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.matryer.$(PRODUCT_NAME:rfc1034identifier)";
@@ -1062,7 +1086,7 @@
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = DISTRO;
-				INFOPLIST_FILE = "$(SRCROOT)/BitBar/BitBar-Info.plist";
+				INFOPLIST_FILE = "BitBar/Dockerinfo-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.matryer.$(PRODUCT_NAME:rfc1034identifier)";
@@ -1074,7 +1098,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		05DADFEB183323DD00409786 /* Build configuration list for PBXProject "BitBar" */ = {
+		05DADFEB183323DD00409786 /* Build configuration list for PBXProject "Dockerinfo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				05DAE01F183323DD00409786 /* Debug */,
@@ -1083,16 +1107,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		05DAE021183323DD00409786 /* Build configuration list for PBXNativeTarget "BitBar" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				05DAE022183323DD00409786 /* Debug */,
-				05DAE023183323DD00409786 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		05DAE024183323DD00409786 /* Build configuration list for PBXNativeTarget "BitBarTests" */ = {
+		05DAE024183323DD00409786 /* Build configuration list for PBXNativeTarget "DockerinfoTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				05DAE025183323DD00409786 /* Debug */,
@@ -1101,7 +1116,16 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		36372DD31C9424DB0005EB32 /* Build configuration list for PBXNativeTarget "BitBarDistroTests" */ = {
+		228B2F281EFFF73800B497F2 /* Build configuration list for PBXNativeTarget "Dockerinfo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				228B2F291EFFF73800B497F2 /* Debug */,
+				228B2F2A1EFFF73800B497F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		36372DD31C9424DB0005EB32 /* Build configuration list for PBXNativeTarget "DockerinfoDistroTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				36372DD41C9424DB0005EB32 /* Debug */,
@@ -1110,7 +1134,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		36DCD8D51C76027C004DE286 /* Build configuration list for PBXNativeTarget "BitBarDistro" */ = {
+		36DCD8D51C76027C004DE286 /* Build configuration list for PBXNativeTarget "DockerinfoDistro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				36DCD8D61C76027C004DE286 /* Debug */,

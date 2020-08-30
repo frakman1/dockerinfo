@@ -9,11 +9,11 @@
 #import "NSUserDefaults+Settings.h"
 #import "LaunchAtLoginController.h"
 #import "PluginManager.h"
-#import "Plugin.h"
-#import <Sparkle/Sparkle.h>
+//#import "Plugin.h"
+//#import <Sparkle/Sparkle.h>
 #import <sys/stat.h>
 
-@interface AppDelegate : NSObject <NSApplicationDelegate, NSURLDownloadDelegate, SUUpdaterDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSURLDownloadDelegate/*, SUUpdaterDelegate*/>
 
 @property (assign) IBOutlet NSWindow *window;
 
@@ -31,25 +31,30 @@
 - (NSArray*) otherCopies { return [NSRunningApplication runningApplicationsWithBundleIdentifier:NSBundle.mainBundle.bundleIdentifier]; }
 
 - (void)applicationWillFinishLaunching:(NSNotification *)n {
+  NSLog(@"applicationWillFinishlaunching: %@", n);
+  
+  PFMoveToApplicationsFolderIfNecessary();
+  /*
   NSString *feedURLString;
 #ifdef DISTRO
   feedURLString = @"https://bitbarapp.com/feeds/distro";
 #else
   feedURLString = @"https://bitbarapp.com/feeds/bitbar";
 #endif
-  
+ 
   SUUpdater *updater = [SUUpdater sharedUpdater];
   updater.delegate = self;
   updater.automaticallyChecksForUpdates = YES;
   updater.feedURL = [NSURL URLWithString:feedURLString];
   updater.sendsSystemProfile = YES;
-  
+*/
   // register custom url scheme handler
+  /*
   [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self
                                                      andSelector:@selector(handleGetURLEvent:withReplyEvent:)
                                                    forEventClass:kInternetEventClass
                                                       andEventID:kAEGetURL];
-
+*/
   if (self.otherCopies.count <= 1) return;
   NSModalResponse runm = [[NSAlert alertWithMessageText:[NSString stringWithFormat:@"Another copy of %@ is already running.", NSBundle.mainBundle.infoDictionary[(NSString *)kCFBundleNameKey]]
                    defaultButton:@"Quit" alternateButton:@"Kill others" otherButton:nil informativeTextWithFormat:@"Quit, or kill the other copy(ies)?"] runModal];
@@ -66,11 +71,11 @@
 - (void) applicationDidFinishLaunching:(NSNotification*)n {
 
   // enable usage of Safari's WebInspector to debug HTML Plugins
-  [NSUserDefaults.standardUserDefaults setBool:YES forKey:@"WebKitDeveloperExtras"];
-  [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
+  //[NSUserDefaults.standardUserDefaults setBool:YES forKey:@"WebKitDeveloperExtras"];
+  /*[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
                                                          selector: @selector(receiveWakeNote:)
                                                              name: NSWorkspaceDidWakeNotification object: NULL];
-
+*/
   if (DEFS.isFirstTimeAppRun) {
     LaunchAtLoginController *launcher = LaunchAtLoginController.new;
     if (!launcher.launchAtLogin) [launcher setLaunchAtLogin:YES];
@@ -80,21 +85,26 @@
   NSString* pluginsDirectory = DEFS.pluginsDirectory;
 
   // Test if we are running unit tests!
-  NSString* testBundlePath = [NSProcessInfo processInfo].environment[@"XCInjectBundle"];
-  if (testBundlePath && [testBundlePath hasSuffix:@".xctest"]) {
-    pluginsDirectory = [[[NSBundle bundleWithPath:testBundlePath] resourcePath] stringByAppendingPathComponent:@"TestPlugins"];
-  }
+  //NSString* testBundlePath = [NSProcessInfo processInfo].environment[@"XCInjectBundle"];
+  //if (testBundlePath && [testBundlePath hasSuffix:@".xctest"]) {
+  //  pluginsDirectory = [[[NSBundle bundleWithPath:testBundlePath] resourcePath] stringByAppendingPathComponent:@"TestPlugins"];
+  //}
   
   // make a plugin manager
   [_pluginManager = [PluginManager.alloc initWithPluginPath:pluginsDirectory]
                                                                   setupAllPlugins];
-}
-
+  
+  [[NSUserDefaults standardUserDefaults] setObject: [NSNumber numberWithInt: 200]
+                                            forKey: @"NSInitialToolTipDelay"];
+  //_pluginManager.environment = [_pluginManager environment];
+  }
+/*
 - (void) receiveWakeNote: (NSNotification*) note
 {
   [[self pluginManager] reset];
 }
-
+*/
+/*
 - (void)handleGetURLEvent:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
   // check if plugins directory is set
   if (!DEFS.pluginsDirectory)
@@ -104,6 +114,32 @@
   
   NSString *URLString = [event paramDescriptorForKeyword:keyDirectObject].stringValue;
   URLString = [URLString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+  NSString *prefix = @"bitbar://screenshot?";
+  
+  if ([URLString hasPrefix:prefix]) {
+    URLString = [URLString substringFromIndex:prefix.length];
+    NSArray *components = [URLString componentsSeparatedByString:@"&"];
+    
+    NSString *pluginPath = nil;
+    NSString *dst = nil;
+    NSString *margin = nil;
+    
+    for (NSString *component in components)
+      if (!pluginPath && (prefix = @"pluginPath=") && [component hasPrefix:prefix])
+        pluginPath = [component substringFromIndex:prefix.length];
+      else if (!dst && (prefix = @"dst=") && [component hasPrefix:prefix])
+        dst = [component substringFromIndex:prefix.length];
+      else if (!margin && (prefix = @"margin=") && [component hasPrefix:prefix])
+        margin = [component substringFromIndex:prefix.length];
+    
+    if (!pluginPath || !dst)
+      return;
+    
+    [self.pluginManager saveScreenshot:pluginPath destination:dst margin:margin.floatValue];
+    return;
+  }
+  
+
   NSString *prefix = @"bitbar://refreshPlugin?name=";
   
   if ([URLString hasPrefix:prefix]) {
@@ -176,9 +212,9 @@
   // NSURLSession is not available below 10.9 :(
   self.download = [[NSURLDownload alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:URLString]] delegate:self];
 }
-
+*/
 #pragma mark - NSURLDownload delegate
-
+/*
 - (void)download:(NSURLDownload *)download decideDestinationWithSuggestedFilename:(NSString *)filename {
   self.suggestedDestinationPath = [DEFS.pluginsDirectory stringByAppendingPathComponent:filename];
   [download setDestination:self.suggestedDestinationPath allowOverwrite:NO];
@@ -226,7 +262,8 @@
   self.destinationPath = nil;
   self.suggestedDestinationPath = nil;
 }
-
+ */
+/*
 #pragma mark - SUUpdater delegate
 
 // hack to disable the update prompt if user configuration is disabled
@@ -259,7 +296,7 @@
   
   return (__bridge SUAppcastItem *)item;
 }
-
+*/
 @end
 
 int main(int argc, const char * argv[]) { return NSApplicationMain(argc, argv); }

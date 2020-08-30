@@ -54,7 +54,7 @@
   WebView * webview = [WebView.alloc initWithFrame:NSMakeRect(0, 0, 15, 15)];
 
   self.webView = webview;
-  
+
   webview.frameLoadDelegate = (id)self;
   webview.resourceLoadDelegate = (id)self;
   webview.UIDelegate = (id)self;

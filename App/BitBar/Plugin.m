@@ -18,7 +18,8 @@
 
 @implementation Plugin
 
-- init { return (self = super.init) ? _currentLine = -1, _cycleLinesIntervalSeconds = 5, self : nil; }
+- init {
+  return (self = super.init) ? _currentLine = -1, _cycleLinesIntervalSeconds = 5, _environment = NSProcessInfo.processInfo.environment.mutableCopy, _environment[@"PATH"] = @"/usr/local/bin", self : nil; }
 
 - initWithManager:(PluginManager*)manager { return (self = self.init) ? _manager = manager, self : nil; }
 
@@ -26,10 +27,54 @@
     
     // make the status item
     _statusItem = [self.manager.statusBar statusItemWithLength:NSVariableStatusItemLength];
-    
+    //FRAK
+    //NSImage *image = [NSImage imageNamed:@"baricon"];
+    //[image setTemplate:YES];
+    //[_statusItem setImage:image];
+  NSString *versionString = [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"];
+  
+  //NSMenuItem *versionMenuitem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"BaseVersion: %@", versionString] action:nil keyEquivalent:@""];
+
+    [self.statusItem setToolTip:([NSString stringWithFormat:@"Dockerinfo %@ \nMenubar Docker Dashboard ", versionString] )];
+//[NSString stringWithFormat:@"Dockerinfo %@ \nMenubar Docker Dashboard", versionString]
     // build the menu
     [self rebuildMenuForStatusItem:_statusItem]; _statusItem; });
+
   
+}
+
+- (void)loadImageForParams:(NSDictionary *)params completionHandler:(void (^)(NSImage *image))handler {
+  NSString *imageParam = params[@"templateImage"] ?: params[@"image"];
+  
+  if (imageParam) {
+    NSImage *image = [self createImageFromBase64:imageParam isTemplate:!!params[@"templateImage"]];
+    
+    if (image) {
+      handler(image);
+    } else {
+      NSURL *url = [NSURL URLWithString:imageParam];
+      
+      if (url) {
+        [NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:url]
+                                           queue:[NSOperationQueue mainQueue]
+                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                                 NSImage *image = nil;
+                                 
+                                 if (data) {
+                                   image = [[NSImage alloc] initWithData:data];
+                                   
+                                   if (params[@"templateImage"]) {
+                                     image.template = YES;
+                                   }
+                                 }
+                                 
+                                 handler(image);
+                               }];
+      } else {
+        handler(nil);
+      }
+    }
+  }
 }
 
 - (NSImage*) createImageFromBase64:(NSString*)string isTemplate:(BOOL)template{
@@ -68,6 +113,8 @@
 
   SEL sel = params[@"href"] ? @selector(performMenuItemHREFAction:)
           : params[@"bash"] ? @selector(performMenuItemOpenTerminalAction:)
+          : params[@"imsg"] ? @selector(performMenuItemiMessageAction:)
+          : params[@"quit"] ? @selector(performMenuItemQuitAction:)
           : params[@"refresh"] ? @selector(performRefreshNow):
     nil;
 
@@ -81,25 +128,54 @@
     [item setTarget:self];
   }
   BOOL parseANSI = [fullTitle containsANSICodes] && ![[params[@"ansi"] lowercaseString] isEqualToString:@"false"];
-  if (params[@"font"] || params[@"size"] || params[@"color"] || parseANSI)
+  BOOL multiline = [fullTitle rangeOfString:@"\\n"].location != NSNotFound;
+  if (params[@"font"] || params[@"size"] || params[@"color"] || parseANSI || multiline)
     item.attributedTitle = [self attributedTitleWithParams:params];
   
   if (params[@"alternate"]) {
     item.alternate = YES;
     item.keyEquivalentModifierMask = NSAlternateKeyMask;
   }
+
+  [self loadImageForParams:params completionHandler:^(NSImage *image) {
+    item.image = image;
+  }];
+
   if (params[@"templateImage"]) {
     item.image = [self createImageFromBase64:params[@"templateImage"] isTemplate:true];
   }else if (params[@"image"]) {
     item.image = [self createImageFromBase64:params[@"image"] isTemplate:false];
   }
-
+  //FRAK
+  if (params[@"checked"]) {
+        item.state = NSOnState;
+  }
+  //FRAK
+  if (params[@"indent"]) {
+    item.indentationLevel = [params[@"indent"] intValue];
+    //NSLog(@"Indentation is:%zd",item.indentationLevel);
+  }
+  
+  if (params[@"tooltip"]) {
+    //NSLog(@"Got a tooltip");
+    item.toolTip = params[@"tooltip"];
+    //NSLog(@"Tooltip is:%@",params[@"tooltip"]);
+  }
+  
+//  if (params[@"quit"]) {
+//    NSLog(@"Got a QUIT");
+//    NSLog(@"Quit is:%@",params[@"quit"]);
+//
+//    [[NSApplication sharedApplication] terminate:self];
+//  }
+  
   return item;
 }
 
 - (NSAttributedString*) attributedTitleWithParams:(NSDictionary *)params {
 
   NSString * fullTitle = params[@"title"];
+  fullTitle = [fullTitle stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"];
   if (![[params[@"emojize"] lowercaseString] isEqualToString:@"false"]) {
     fullTitle = [fullTitle emojizedString];
   }
@@ -114,18 +190,12 @@
   NSString * title = truncLength < titleLength ? [[fullTitle substringToIndex:truncLength] stringByAppendingString:@"…"] : fullTitle;
 
   CGFloat     size = params[@"size"] ? [params[@"size"] floatValue] : 14;
-  NSFont    * font;
-  if ([NSFont respondsToSelector:@selector(monospacedDigitSystemFontOfSize:weight:)]) {
-    font = [self isFontValid:params[@"font"]] ? [NSFont fontWithName:params[@"font"] size:size]
-                                       : [NSFont monospacedDigitSystemFontOfSize:size weight:NSFontWeightRegular]
-                                      ?: [NSFont monospacedDigitSystemFontOfSize:size weight:NSFontWeightRegular];
-  } else {
-    font = [self isFontValid:params[@"font"]] ? [NSFont fontWithName:params[@"font"] size:size]
-                                       : [NSFont menuFontOfSize:size]
-                                       ?: [NSFont menuFontOfSize:size];
-  }
+NSFont    * font = [self validFont:params[@"font"] size:size]
+                                      ?: [NSFont respondsToSelector:@selector(monospacedDigitSystemFontOfSize:weight:)]
+                                       ? [NSFont monospacedDigitSystemFontOfSize:size weight:NSFontWeightRegular]
+                                       : [NSFont menuFontOfSize:size];
 
-  NSDictionary* attributes = @{NSFontAttributeName: font, NSBaselineOffsetAttributeName : @1};
+  NSDictionary* attributes = @{NSFontAttributeName: font, NSBaselineOffsetAttributeName : @0};
   BOOL parseANSI = [fullTitle containsANSICodes] && ![[params[@"ansi"] lowercaseString] isEqualToString:@"false"];
   if (parseANSI) {
     NSMutableAttributedString * attributedTitle = [title attributedStringParsingANSICodes];
@@ -140,6 +210,9 @@
     return attributedTitle;
   }
 }
+
+
+
 
 - (NSMenuItem*) buildMenuItemForLine:(NSString *)line { return [self buildMenuItemWithParams:[self dictionaryForLine:line]]; }
 
@@ -187,6 +260,7 @@
 }
 
 - (void)performHREFAction:(NSDictionary *)params {
+  if ([params[@"href"] isEqualToString:@"#"] ) {NSLog(@"Ignoring #");return;}
   [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:params[@"href"]]];
 }
 
@@ -213,6 +287,26 @@
     }
     [(NSTask*)task waitUntilExit];
 }
+//FRAK
+- (void)performiMessageAction:(NSMutableDictionary *)params {
+  
+  NSLog(@"input params is:%@",params);
+  NSString *param1 = params[@"param1"] ?: @"",
+  *param2 = params[@"param2"] ?: @"";
+  
+
+  
+    
+    //NSString *full_link = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@", bash, param1, param2, param3, param4, param5];
+    NSString *s = [NSString stringWithFormat:@"tell application \"Messages\" to send \"%@\" to buddy \"%@\" of service \"SMS\" ", param1,param2];
+    NSLog(@"s is:%@",s);
+    NSAppleScript *as = [NSAppleScript.alloc initWithSource: s];
+    [as executeAndReturnError:nil];
+  
+}
+//'tell application \"Messages\" to send \"Hello World\" to buddy \"16789852238\" of service \"SMS\"'
+
+
 
 - (void)performOpenTerminalAction:(NSMutableDictionary *)params {
 
@@ -233,7 +327,13 @@
       argArray.copy;
 
     });
-    
+    NSLog(@"terminal is: %@", terminal);
+    if([terminal isEqual: @"quit"])
+    {
+      NSLog(@"Quitting Application...");
+      
+      [[NSApplication sharedApplication] terminate:self];
+    }
     if([terminal isEqual: @"false"]){
       NSLog(@"Args: %@", args);
       [params setObject:bash forKey:@"bash"];
@@ -241,7 +341,7 @@
       [self performSelectorInBackground:@selector(startTask:) withObject:params];
     } else {
 
-      NSString *full_link = [NSString stringWithFormat:@"%@ %@ %@ %@ %@ %@", bash, param1, param2, param3, param4, param5];
+      NSString *full_link = [NSString stringWithFormat:@"'%@' %@ %@ %@ %@ %@", bash, param1, param2, param3, param4, param5];
       NSString *s = [NSString stringWithFormat:@"tell application \"Terminal\" \n\
                  do script \"%@\" \n\
                  activate \n\
@@ -254,6 +354,18 @@
 - (void)performMenuItemOpenTerminalAction:(NSMenuItem *)menuItem {
   [self performOpenTerminalAction:menuItem.representedObject];
 }
+
+- (void)performMenuItemiMessageAction:(NSMenuItem *)menuItem {
+  [self performiMessageAction:menuItem.representedObject];
+}
+
+- (void)performMenuItemQuitAction:(NSMenuItem *)menuItem {
+  NSLog(@"Got a QUIT");
+  
+  [[NSApplication sharedApplication] terminate:self];
+}
+
+
 
 - (void) rebuildMenuForStatusItem:(NSStatusItem*)statusItem {
   
@@ -329,12 +441,17 @@
     self.lastUpdatedMenuItem = [NSMenuItem.alloc initWithTitle:@"Updated just now" action:nil keyEquivalent:@""];
     [menu addItem:self.lastUpdatedMenuItem];
   }
-  
+  self.MemoryUsedMenuItem = [NSMenuItem.alloc initWithTitle:@"Memory" action:nil keyEquivalent:@""];
+  [menu addItem:self.MemoryUsedMenuItem];
+
+  //[self.MemoryUsedMenuItem setTitle: [NSString stringWithFormat:@"Memory: %d MB", [self report_memory]]];
+
   [self addAdditionalMenuItems:menu];
   [self addDefaultMenuItems:menu];
   
   // set the menu
   statusItem.menu = menu;
+
   
 }
 
@@ -418,7 +535,7 @@
       return;
     }
     
-    if (params[@"href"] || params[@"bash"] || params[@"refresh"]) {
+    if (params[@"href"] || params[@"bash"] || params[@"imsg"] || params[@"refresh"]) {
       self.statusItem.menu = nil;
       self.statusItem.action = @selector(statusItemClicked);
       self.statusItem.target = self;
@@ -439,6 +556,8 @@
     
     
     self.statusItem.attributedTitle = [self attributedTitleWithParams:params];
+    self.statusItem.enabled = YES;
+    
     self.pluginIsVisible = YES;
   } else {
     self.statusItem = nil;
@@ -453,15 +572,13 @@
   _allContentLines = nil;
 }
 
-- (BOOL) isFontValid:(NSString *)fontName {
-  if (fontName == nil) {
-    return NO;
-  }
+- (NSFont *)validFont:(NSString *)fontName size:(CGFloat)size {
+  if (!fontName) return nil;
   
-  NSFontDescriptor *fontDescriptor = [NSFontDescriptor fontDescriptorWithFontAttributes:@{NSFontNameAttribute:fontName}];
-  NSArray *matches = [fontDescriptor matchingFontDescriptorsWithMandatoryKeys: nil];
+  NSFontDescriptor *fontDescriptor = [NSFontDescriptor fontDescriptorWithFontAttributes:@{NSFontNameAttribute : fontName}];
+  NSFontDescriptor *match = [fontDescriptor matchingFontDescriptorWithMandatoryKeys:nil];
   
-  return ([matches count] > 0);
+  return match ? [NSFont fontWithDescriptor:match size:size] : nil;
 }
 
 - (void) setContent:(NSString *)content {
@@ -476,7 +593,7 @@
 
 - (NSString *)allContent {
   if (!_allContent) {
-    _allContent = self.content;
+    _allContent = [self.content componentsSeparatedByString:@"~~~"].firstObject;
     if (self.errorContent.length > 0) {
       _allContent = [@"⚠️" stringByAppendingString:_allContent];
       _allContent = [_allContent stringByAppendingString:@"\n---\n"];
@@ -566,6 +683,18 @@
 }
 
 - (void)statusItemClicked {
+  BOOL altKeyDown = ([NSEvent modifierFlags] & NSAlternateKeyMask) != 0;
+  if (altKeyDown) {
+    [self rebuildMenuForStatusItem:self.statusItem];
+    
+    NSMenu *menu = self.statusItem.menu;
+    
+    self.statusItem.menu = nil;
+    [self.statusItem popUpStatusItemMenu:menu];
+    
+    return;
+  }
+  
   NSDictionary *params = [self dictionaryForLine:self.titleLines[self.currentLine]];
   if (params[@"href"]) {
     [self performHREFAction:params];
@@ -573,7 +702,37 @@
     [self performOpenTerminalAction:[NSMutableDictionary dictionaryWithDictionary:params]];
   } else if (params[@"refresh"]) {
     [self performRefreshNow];
+  } else if (params[@"imsg"]) {
+    [self performiMessageAction:[NSMutableDictionary dictionaryWithDictionary:params]];
   }
+
+}
+
+- (NSDictionary *)metadata {
+  if (!_metadata) {
+    NSArray *tags = @[@"droptypes", @"demo"];
+    
+    NSString *string = [NSString stringWithContentsOfFile:self.path encoding:NSUTF8StringEncoding error:NULL];
+    
+    if (!string) {
+      return nil;
+    }
+    
+    NSMutableDictionary *metadata = [NSMutableDictionary dictionaryWithCapacity:tags.count];
+    
+    for (NSString *tag in tags) {
+      NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:[NSString stringWithFormat:@"<bitbar\\.%@>(.*?)<\\/bitbar\\.%@>", tag, tag] options:0 error:NULL];
+      NSTextCheckingResult *match = [regex firstMatchInString:string options:0 range:NSMakeRange(0, string.length)];
+      
+      if (match) {
+        [metadata setObject:[string substringWithRange:[match rangeAtIndex:1]] forKey:tag];
+      }
+    }
+    
+    _metadata = metadata;
+  }
+  
+  return _metadata;
 }
 
 #pragma mark - NSMenuDelegate
@@ -596,6 +755,30 @@
   [self.statusItem setHighlightMode:YES];
 
   [self.lastUpdatedMenuItem setTitle:self.lastUpdated ? [NSString stringWithFormat:@"Updated %@", self.lastUpdatedString] : @"Refreshing…"];
+  [self.MemoryUsedMenuItem setTitle: [NSString stringWithFormat:@"Memory Used: %d MB", [self report_memory]]];
+  self.MemoryUsedMenuItem.alternate = YES;
+  self.MemoryUsedMenuItem.keyEquivalentModifierMask = NSAlternateKeyMask;
+
+  //[self report_memory];
+  //[self.defaultStatusItem setTitle:NSProcessInfo.processInfo.processName];
+  //[(self.defaultStatusItem.menu = NSMenu.new) setDelegate:self];
+  //[self.manager environment ];
+}
+
+- (int32_t) report_memory
+{
+  struct mach_task_basic_info info;
+  mach_msg_type_number_t size = MACH_TASK_BASIC_INFO_COUNT;
+  kern_return_t kerr = task_info(mach_task_self(),
+                                 MACH_TASK_BASIC_INFO,
+                                 (task_info_t)&info,
+                                 &size);
+  if( kerr == KERN_SUCCESS ) {
+    //NSLog(@"Memory in use (in Mbytes): %u", info.resident_size/(1024*1024));
+  } else {
+    NSLog(@"Error with task_info(): %s", mach_error_string(kerr));
+  }
+  return info.resident_size/(1024*1024);
 }
 
 - (void)menuDidClose:(NSMenu *)menu {
@@ -633,4 +816,45 @@
   }
 }
 
+#pragma mark - NSWindowDelegate
+
+- (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender {
+  return NSDragOperationCopy;
+}
+
+- (BOOL)performDragOperation:(id <NSDraggingInfo>)sender {
+  NSArray *types = [self.metadata[@"droptypes"] componentsSeparatedByString:@","];
+  NSPasteboard *pboard = [sender draggingPasteboard];
+  NSMutableArray *args = [NSMutableArray array];
+  
+  for (NSString *type in types) {
+    if ([type isEqualToString:@"filenames"]) {
+      if (![pboard.types containsObject:NSFilenamesPboardType]) {
+        continue;
+      }
+      
+      NSArray *files = [pboard propertyListForType:NSFilenamesPboardType];
+      
+      [args addObject:@"-filenames"];
+      [args addObjectsFromArray:files];
+      
+      break;
+    }
+    
+    if ([pboard.types containsObject:type]) {
+      NSString *string = [pboard stringForType:type];
+      
+      if (string) {
+        [args addObject:[@"-" stringByAppendingString:type]];
+        [args addObject:string];
+      }
+    }
+  }
+  
+  if (args.count) {
+    [self performSelectorInBackground:@selector(startTask:) withObject:@{@"bash" : self.path, @"args" : args, @"refresh" : @""}];
+  }
+  
+  return YES;
+}
 @end

@@ -20,8 +20,11 @@
 @property (nonatomic)        NSArray *titleLines;
 @property (nonatomic)       NSNumber *refreshIntervalSeconds;
 @property (nonatomic)     NSMenuItem *lastUpdatedMenuItem;
+@property (nonatomic)     NSMenuItem *MemoryUsedMenuItem;
 @property (nonatomic)         NSDate *lastUpdated;
+@property (nonatomic)   NSDictionary *metadata;
 @property (weak, readonly)   PluginManager *manager;
+@property (readonly)   NSMutableDictionary *environment;
 
 // UI
 @property (nonatomic) NSStatusItem *statusItem;

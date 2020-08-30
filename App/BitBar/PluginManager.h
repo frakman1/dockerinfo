@@ -29,4 +29,6 @@
 
 - (void) pluginDidUdpdateItself:(Plugin*)plugin;
 
+- (void)saveScreenshot:(NSString *)pluginPath destination:(NSString *)dst margin:(CGFloat)margin;
+
 @end

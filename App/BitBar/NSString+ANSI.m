@@ -35,6 +35,9 @@
     // case 3: italic
     // case 23: italic off
     // case 4: underlined
+ //     case 4: //underlined
+ //       self[NSUnderlineStyleAttributeName] = NSUnderlineStyleSingle;
+ //       break;
     // case 24: underlined off
 
       case 30:
@@ -62,6 +65,10 @@
         self[NSForegroundColorAttributeName] = [NSColor colorWithHexColorString:bold ? @"e5e5e5" : @"ffffff"];
         break;
 
+      case 38:
+        self[NSForegroundColorAttributeName] = [NSColor colorWithWebColorString:bold ? @"orange" : @"orange"];
+        break;
+        
       case 39:
         [self removeObjectForKey:NSForegroundColorAttributeName];
         break;

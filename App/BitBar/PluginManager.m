@@ -12,7 +12,7 @@
 #import "HTMLPlugin.h"
 #import "NSUserDefaults+Settings.h"
 #import "LaunchAtLoginController.h"
-#import <Sparkle/SUUpdater.h>
+//#import <Sparkle/SUUpdater.h>
 
 @interface PluginManager () {
   LaunchAtLoginController *_launchAtLoginController;
@@ -34,9 +34,9 @@
   [self.statusBar removeStatusItem:self.defaultStatusItem];
   
   // make default menu item
-  self.defaultStatusItem = [self.statusBar statusItemWithLength:NSVariableStatusItemLength];
-  [self.defaultStatusItem setTitle:NSProcessInfo.processInfo.processName];
-  [(self.defaultStatusItem.menu = NSMenu.new) setDelegate:self];
+  //self.defaultStatusItem = [self.statusBar statusItemWithLength:NSVariableStatusItemLength];
+  //[self.defaultStatusItem setTitle:NSProcessInfo.processInfo.processName];
+  //[(self.defaultStatusItem.menu = NSMenu.new) setDelegate:self];
   
   if (message.length) {
     NSMenuItem *messageMenuItem = [NSMenuItem.alloc initWithTitle:message action:nil keyEquivalent:@""];
@@ -77,8 +77,8 @@
   
   NSString *versionString = [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"];
   
-  NSMenuItem *versionMenuitem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"v%@", versionString] action:nil keyEquivalent:@""];
-  
+  NSMenuItem *versionMenuitem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"BaseVersion: %@", versionString] action:nil keyEquivalent:@""];
+/*
   if (!DEFS.userConfigDisabled) {
     versionMenuitem.alternate = YES;
     versionMenuitem.keyEquivalentModifierMask = NSAlternateKeyMask;
@@ -101,7 +101,11 @@
     
     ADD_MENU(@"Check for Updates…", checkForUpdates:, nil, [SUUpdater sharedUpdater]);
   }
-  
+ */
+  // open at login, aka openAtLoginMenuItem
+  [ADD_MENU(@"Open at Login", toggleOpenAtLogin:, nil, self) setState:_launchAtLoginController.launchAtLogin];
+  NSMenuItem *fraksoftMI = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Docker Info by Frak"] action:nil keyEquivalent:@""];
+  [targetMenu addItem:fraksoftMI];
   [targetMenu addItem:versionMenuitem];
 
 //
@@ -190,6 +194,8 @@
   [openDlg setPrompt:@"Use as Plugins Directory"];
   [openDlg setTitle:@"Select BitBar Plugins Directory"];
   
+  //NSLog(@"FRAK. Using PluginsDirectory: %@",DEFS.pluginsDirectory);
+  
   
   if (openDlg.runModal == NSOKButton) {
     
@@ -211,6 +217,7 @@
       
       self.path = [openDlg.URL path];
       [DEFS setPluginsDirectory:self.path];
+      
       return YES;
       
     }
@@ -257,7 +264,7 @@
     NSMutableArray *plugins = [NSMutableArray.alloc initWithCapacity:[pluginFiles count]];
     NSString *file;
     for (file in pluginFiles) {
-     
+      NSLog(@"Adding Plugin");
       // setup this plugin
       Plugin *plugin;
       if ([@[@"html",@"htm"] containsObject:file.pathExtension.lowercaseString]) {
@@ -268,12 +275,16 @@
       
       [plugin setPath:[self.path stringByAppendingPathComponent:file]];
       [plugin setName:file];
-      [plugin.statusItem setTitle:@"…"];
+      [plugin.statusItem setTitle:@"🔄"]; //FRAK startup
+      [plugin.statusItem setToolTip:([NSString stringWithFormat:@"Dockerinfo.\nLoading. Please wait."] )];
+      //NSLog(@"Dockerinfo. Please wait.");
+      //NSLog(@"File:%@",pluginFiles);
       
       [plugins addObject:plugin];
-      
+      //NSLog(@"plugin added");
+
     }
-    
+    //NSLog(@"Copying Plugin...");
     plugins.copy;
 
   });
@@ -281,21 +292,44 @@
 
 - (NSDictionary *)environment {
   
-  return _environment = _environment ?: ({
+  //return _environment = _environment ?: ({
+    return _environment =  ({
 
     NSMutableDictionary *env = NSProcessInfo.processInfo.environment.mutableCopy;
     env[@"BitBar"] = @YES;
+    env[@"DockerInfoBuild"] = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
+    env[@"DockerInfoVersion"] = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
       
     // Determine if Mac is in Dark Mode
     NSString *osxMode = [[NSUserDefaults standardUserDefaults] stringForKey:@"AppleInterfaceStyle"];
     if ([osxMode isEqualToString:@"Dark"]) {
-        env[@"BitBarDarkMode"] = @YES;
+        env[@"DockerInfoDarkMode"] = @YES;
     }
-      
+    //NSNumber *memoryUsed = [NSNumber numberWithInt:[self report_memory2]];
+    
+    //env[@"MemoryUsed"] = memoryUsed;
     env;
   });
   
 }
+/*
+- (int32_t) report_memory2
+{
+  struct mach_task_basic_info info;
+  mach_msg_type_number_t size = MACH_TASK_BASIC_INFO_COUNT;
+  kern_return_t kerr = task_info(mach_task_self(),
+                                 MACH_TASK_BASIC_INFO,
+                                 (task_info_t)&info,
+                                 &size);
+  if( kerr == KERN_SUCCESS ) {
+    NSLog(@"2.Memory in use (in Mbytes): %u", info.resident_size/(1024*1024));
+  } else {
+    NSLog(@"Error with task_info(): %s", mach_error_string(kerr));
+  }
+  return info.resident_size/(1024*1024);
+}
+*/
+
 
 - (void) pluginDidUdpdateItself:(Plugin*)plugin {
   [self checkForNoPlugins];
@@ -338,9 +372,74 @@
   return YES;
 }
 
+- (void)saveScreenshot:(NSString *)pluginPath destination:(NSString *)dst margin:(CGFloat)margin {
+  for (Plugin *plugin in _plugins) {
+    [plugin close];
+    [self.statusBar removeStatusItem:plugin.statusItem];
+  }
+  
+  Plugin *plugin;
+  
+  if ([@[@"html", @"htm"] containsObject:pluginPath.pathExtension.lowercaseString])
+    plugin = [[HTMLPlugin alloc] initWithManager:self];
+  else
+    plugin = [[ExecutablePlugin alloc] initWithManager:self];
+  
+  plugin.path = pluginPath;
+  plugin.statusItem.title = @"…";
+  
+  _plugins = @[plugin];
+  
+  if ([plugin respondsToSelector:@selector(refreshContentByExecutingCommand:)]) {
+    [(ExecutablePlugin *)plugin refreshContentByExecutingCommand:[plugin.metadata[@"demo"] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]];
+    
+    plugin.lastUpdated = [NSDate date];
+    
+    [plugin rebuildMenuForStatusItem:plugin.statusItem];
+    
+    // reset the current line
+    plugin.currentLine = -1;
+    
+    // update the status item
+    [plugin cycleLines];
+    
+    // tell the manager this plugin has updated
+    [self pluginDidUdpdateItself:plugin];
+  }
+  
+  dispatch_async(dispatch_get_main_queue(), ^{
+    NSRect screenFrame = [plugin.statusItem.button.window convertRectToScreen:plugin.statusItem.button.frame];
+    screenFrame.origin.y = 0;
+    screenFrame.size.width = MAX(plugin.statusItem.menu.size.width, screenFrame.size.width);
+    screenFrame.size.height += plugin.statusItem.menu.size.height;
+    
+    if (NSMaxX(screenFrame) > CGDisplayPixelsWide(kCGDirectMainDisplay))
+      screenFrame.origin.x -= screenFrame.size.width - plugin.statusItem.button.frame.size.width;
+    
+    if (margin)
+      screenFrame = NSInsetRect(screenFrame, -margin, -margin);
+    
+    CGImageRef image = CGDisplayCreateImageForRect(kCGDirectMainDisplay, screenFrame);
+    NSBitmapImageRep *rep = [[NSBitmapImageRep alloc] initWithCGImage:image];
+    NSData *pngData = [rep representationUsingType:NSPNGFileType properties:@{}];
+    [pngData writeToFile:dst atomically:YES];
+    
+    if (image)
+      CGImageRelease(image);
+    
+    [plugin.statusItem.menu cancelTrackingWithoutAnimation];
+    [self reset];
+  });
+  
+  if (plugin.statusItem.menu)
+    [plugin.statusItem.button performClick:nil];
+}
+
 #pragma mark - NSMenuDelegate
 
 - (void)menuWillOpen:(NSMenu *)menu {
+  NSLog(@"menuWillOpen");
+
   [self.defaultStatusItem setHighlightMode:YES];
 }
 

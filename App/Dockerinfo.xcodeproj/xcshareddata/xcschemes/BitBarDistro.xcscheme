@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0720"
+   LastUpgradeVersion = "0830"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "36DCD8BC1C76027C004DE286"
-               BuildableName = "BitBarDistro.app"
-               BlueprintName = "BitBarDistro"
-               ReferencedContainer = "container:BitBar.xcodeproj">
+               BuildableName = "DockerinfoDistro.app"
+               BlueprintName = "DockerinfoDistro"
+               ReferencedContainer = "container:Dockerinfo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "36DCD8BC1C76027C004DE286"
-            BuildableName = "BitBarDistro.app"
-            BlueprintName = "BitBarDistro"
-            ReferencedContainer = "container:BitBar.xcodeproj">
+            BuildableName = "DockerinfoDistro.app"
+            BlueprintName = "DockerinfoDistro"
+            ReferencedContainer = "container:Dockerinfo.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "36DCD8BC1C76027C004DE286"
-            BuildableName = "BitBarDistro.app"
-            BlueprintName = "BitBarDistro"
-            ReferencedContainer = "container:BitBar.xcodeproj">
+            BuildableName = "DockerinfoDistro.app"
+            BlueprintName = "DockerinfoDistro"
+            ReferencedContainer = "container:Dockerinfo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "36DCD8BC1C76027C004DE286"
-            BuildableName = "BitBarDistro.app"
-            BlueprintName = "BitBarDistro"
-            ReferencedContainer = "container:BitBar.xcodeproj">
+            BuildableName = "DockerinfoDistro.app"
+            BlueprintName = "DockerinfoDistro"
+            ReferencedContainer = "container:Dockerinfo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

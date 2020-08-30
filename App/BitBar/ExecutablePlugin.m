@@ -14,6 +14,10 @@
 @implementation ExecutablePlugin
 
 - (BOOL) refreshContentByExecutingCommand {
+  return [self refreshContentByExecutingCommand:nil];
+}
+
+- (BOOL)refreshContentByExecutingCommand:(NSArray<NSString *> *)args {
 
   if (![[NSFileManager defaultManager] fileExistsAtPath:self.path]) {
     return NO;
@@ -24,28 +28,46 @@
   [task setEnvironment:self.manager.environment];
   [task setLaunchPath:self.path];
   [task useSystemProxies];
+  
+  if (args) {
+    task.arguments = args;
+  }
 
   NSPipe *stdoutPipe = [NSPipe pipe];
   [task setStandardOutput:stdoutPipe];
+  [stdoutPipe.fileHandleForReading waitForDataInBackgroundAndNotify];
 
   NSPipe *stderrPipe = [NSPipe pipe];
   [task setStandardError:stderrPipe];
 
+  self.content = @"";
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fileHandleDataAvailable:) name:NSFileHandleDataAvailableNotification object:stdoutPipe.fileHandleForReading];
+  
   @try {
     [task launch];
   } @catch (NSException *e) {
     NSLog(@"Error when running %@: %@", self.name, e);
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSFileHandleDataAvailableNotification object:stdoutPipe.fileHandleForReading];
     self.lastCommandWasError = YES;
     self.content = @"";
     self.errorContent = e.reason;
     return NO;
   }
-  NSData *stdoutData = [[stdoutPipe fileHandleForReading] readDataToEndOfFile];
-  NSData *stderrData = [[stderrPipe fileHandleForReading] readDataToEndOfFile];
 
   [task waitUntilExit];
-
-  self.content = [NSString.alloc initWithData:stdoutData encoding:NSUTF8StringEncoding];
+  
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:NSFileHandleDataAvailableNotification object:stdoutPipe.fileHandleForReading];
+  
+  NSData *stdoutData = [[stdoutPipe fileHandleForReading] readDataToEndOfFile];
+  NSData *stderrData = [[stderrPipe fileHandleForReading] readDataToEndOfFile];
+  
+  NSString *content = [[NSString alloc] initWithData:stdoutData encoding:NSUTF8StringEncoding];
+  
+  if (content) {
+    self.content = [self.content stringByAppendingString:content];
+  }
+  
   self.errorContent = [NSString.alloc initWithData:stderrData encoding:NSUTF8StringEncoding];
 
   // failure
@@ -56,16 +78,54 @@
 
   // success
   self.lastCommandWasError = NO;
+
   return YES;
 }
 
+- (void)fileHandleDataAvailable:(NSNotification *)notification {
+  NSFileHandle *fileHandle = notification.object;
+  NSString *string = [[NSString alloc] initWithData:fileHandle.availableData encoding:NSUTF8StringEncoding];
+  NSString *content = string ? [self.content stringByAppendingString:string] : self.content;
+  NSArray *components = [content componentsSeparatedByString:@"~~~"];
+  
+  if (components.count > 1 && [components[components.count - 2] length] > 0) {
+    self.content = [NSString stringWithFormat:@"%@~~~%@", components[components.count - 2], components[components.count - 1]];
+    
+    [self.lineCycleTimer invalidate];
+    self.lineCycleTimer = nil;
+    
+    self.lastUpdated = NSDate.new;
+    
+    [self rebuildMenuForStatusItem:self.statusItem];
+    
+    // reset the current line
+    self.currentLine = -1;
+    
+    // update the status item
+    [self cycleLines];
+    
+    // sort out multi-line cycler
+    if (self.isMultiline) {
+      
+      // start the timer to keep cycling lines
+      self.lineCycleTimer = [NSTimer scheduledTimerWithTimeInterval:self.cycleLinesIntervalSeconds target:self selector:@selector(cycleLines) userInfo:nil repeats:YES];
+      
+    }
+    
+    // tell the manager this plugin has updated
+    [self.manager pluginDidUdpdateItself:self];
+  } else {
+    self.content = content;
+  }
+  
+  [fileHandle waitForDataInBackgroundAndNotify];
+}
+
 - (void)performRefreshNow {
-  self.content = @"Updating ...";
-  self.errorContent = @"";
-  [self rebuildMenuForStatusItem:self.statusItem];
-  self.currentLine = -1;
-  [self cycleLines];
-  [self.manager pluginDidUdpdateItself:self];
+  if (self.pluginIsVisible) {
+    self.statusItem.enabled = NO;
+  }
+  
   [self refresh];
 }
 
@@ -83,7 +143,14 @@
       if (weakSelf) {
         __strong ExecutablePlugin* strongSelf = weakSelf;
         
+        [strongSelf.lineCycleTimer invalidate];
+        strongSelf.lineCycleTimer = nil;
+        
         strongSelf.lastUpdated = NSDate.new;
+        //NSLog(@"3 ");
+        NSString *versionString = [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"];
+        [self.statusItem setToolTip:([NSString stringWithFormat:@"Dockerinfo %@\nMenubar Docker Dashboard", versionString] )];
+        //NSLog(@"Dockerinfo vvv.Menubar Docker Dashboard");
         
         [strongSelf rebuildMenuForStatusItem:strongSelf.statusItem];
         

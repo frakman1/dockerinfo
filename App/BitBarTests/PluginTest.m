@@ -368,7 +368,7 @@
   PluginManager *manager = [PluginManager testManager];
   
   Plugin *p = [[Plugin alloc] initWithManager:manager];
-  p.content = @"No action\n|href=\n|bash=\n|refresh=";
+  p.content = @"No action\n|href=\n|bash=\n|imsg=\n|refresh=";
   
   for (NSUInteger i = 0; i < p.titleLines.count + 1; i++) {
     [p cycleLines];
@@ -393,6 +393,8 @@
       } else if (currentLine == 2) {
         XCTAssertNotNil(params[@"bash"]);
       } else if (currentLine == 3) {
+        XCTAssertNotNil(params[@"imsg"]);
+      }else if (currentLine == 4) {
         XCTAssertNotNil(params[@"refresh"]);
       }
     }

@@ -12,7 +12,9 @@
 
 - (NSString *)pluginsDirectory {
 #ifdef DISTRO
-  return [self stringForKey:@"pluginsDirectory"] ?: [NSBundle mainBundle].executablePath.stringByDeletingLastPathComponent;
+  NSLog(@"FRAK. Using executable path:%@ ", [NSBundle mainBundle].executablePath.stringByDeletingLastPathComponent);
+  //return [self stringForKey:@"pluginsDirectory"] ?: [NSBundle mainBundle].executablePath.stringByDeletingLastPathComponent;
+  return [NSBundle mainBundle].executablePath.stringByDeletingLastPathComponent;
 #else
   return [self stringForKey:@"pluginsDirectory"];
 #endif
