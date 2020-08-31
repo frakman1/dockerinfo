@@ -23,9 +23,11 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
+			<key>CFBundleURLName</key>
+			<string>com.fraksoft.Dockerinfo</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>bitbar</string>
+				<string>dockerinfo</string>
 			</array>
 		</dict>
 	</array>
@@ -38,7 +40,7 @@
 	<key>LSUIElement</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright ©2017 Farqed (Frak) Al-Nuaimy. All rights reserved.</string>
+	<string>Copyright ©2020 Farqed (Frak) Al-Nuaimy. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>App</string>
 	<key>NSPrincipalClass</key>

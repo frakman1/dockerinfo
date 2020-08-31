@@ -49,12 +49,12 @@
   updater.sendsSystemProfile = YES;
 */
   // register custom url scheme handler
-  /*
+
   [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self
                                                      andSelector:@selector(handleGetURLEvent:withReplyEvent:)
                                                    forEventClass:kInternetEventClass
                                                       andEventID:kAEGetURL];
-*/
+
   if (self.otherCopies.count <= 1) return;
   NSModalResponse runm = [[NSAlert alertWithMessageText:[NSString stringWithFormat:@"Another copy of %@ is already running.", NSBundle.mainBundle.infoDictionary[(NSString *)kCFBundleNameKey]]
                    defaultButton:@"Quit" alternateButton:@"Kill others" otherButton:nil informativeTextWithFormat:@"Quit, or kill the other copy(ies)?"] runModal];
@@ -104,17 +104,15 @@
   [[self pluginManager] reset];
 }
 */
-/*
+
 - (void)handleGetURLEvent:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent {
-  // check if plugins directory is set
-  if (!DEFS.pluginsDirectory)
-    return;
+
   
   // extract the url from the event and handle it
   
   NSString *URLString = [event paramDescriptorForKeyword:keyDirectObject].stringValue;
   URLString = [URLString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-  NSString *prefix = @"bitbar://screenshot?";
+  NSString *prefix = @"dockerinfo://screenshot?";
   
   if ([URLString hasPrefix:prefix]) {
     URLString = [URLString substringFromIndex:prefix.length];
@@ -139,8 +137,11 @@
     return;
   }
   
+  // check if plugins directory is set
+  if (!DEFS.pluginsDirectory)
+    return;
 
-  NSString *prefix = @"bitbar://refreshPlugin?name=";
+   prefix = @"dockerinfo://refreshPlugin?name=";
   
   if ([URLString hasPrefix:prefix]) {
       URLString = [URLString substringFromIndex:prefix.length];
@@ -153,7 +154,7 @@
   if (DEFS.userConfigDisabled)
     return;
   
-  prefix = @"bitbar://openPlugin?";
+  prefix = @"dockerinfo://openPlugin?";
   
   // skip urls that don't begin with our prefix
   if (![URLString hasPrefix:prefix])
@@ -212,7 +213,7 @@
   // NSURLSession is not available below 10.9 :(
   self.download = [[NSURLDownload alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:URLString]] delegate:self];
 }
-*/
+
 #pragma mark - NSURLDownload delegate
 /*
 - (void)download:(NSURLDownload *)download decideDestinationWithSuggestedFilename:(NSString *)filename {
