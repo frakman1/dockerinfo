@@ -24,6 +24,17 @@
 - initWithPluginPath:(NSString*)path {
   if (self = [super init]) {
     _path = [path stringByStandardizingPath];
+    //NSLog(@"FRAK.  _path is : %@",_path);
+    //NSLog(@"FRAK.  path is : %@",path);
+    
+    //NSBundle *myBundle = [NSBundle mainBundle];
+    //NSString *absPath= [myBundle pathForResource:@"dockerinfo.365d" ofType:@"py"];
+    //NSLog(@"FRAK.  absPath is : %@",absPath);
+
+    //NSString *myPluginDir = [absPath stringByDeletingLastPathComponent];
+    //NSLog(@"FRAK.  myPluginDir is : %@",myPluginDir);
+    //_path = [myPluginDir stringByStandardizingPath];
+
     _launchAtLoginController = [[LaunchAtLoginController alloc] init];
   }
   return self;
@@ -104,7 +115,7 @@
  */
   // open at login, aka openAtLoginMenuItem
   [ADD_MENU(@"Open at Login", toggleOpenAtLogin:, nil, self) setState:_launchAtLoginController.launchAtLogin];
-  NSMenuItem *fraksoftMI = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"Docker Info by Frak"] action:nil keyEquivalent:@""];
+  NSMenuItem *fraksoftMI = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"DockerInfo by FrakSoft"] action:nil keyEquivalent:@""];
   [targetMenu addItem:fraksoftMI];
   [targetMenu addItem:versionMenuitem];
 
@@ -217,6 +228,8 @@
       
       self.path = [openDlg.URL path];
       [DEFS setPluginsDirectory:self.path];
+      //NSLog(@"FRAK.  self.path: %@",self.path);
+
       
       return YES;
       
@@ -264,7 +277,7 @@
     NSMutableArray *plugins = [NSMutableArray.alloc initWithCapacity:[pluginFiles count]];
     NSString *file;
     for (file in pluginFiles) {
-      NSLog(@"Adding Plugin");
+      NSLog(@"Adding Plugin %@",file);
       // setup this plugin
       Plugin *plugin;
       if ([@[@"html",@"htm"] containsObject:file.pathExtension.lowercaseString]) {
@@ -296,14 +309,14 @@
     return _environment =  ({
 
     NSMutableDictionary *env = NSProcessInfo.processInfo.environment.mutableCopy;
-    env[@"BitBar"] = @YES;
+    env[@"DockerInfo"] = @YES;
     env[@"DockerInfoBuild"] = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
     env[@"DockerInfoVersion"] = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
       
     // Determine if Mac is in Dark Mode
     NSString *osxMode = [[NSUserDefaults standardUserDefaults] stringForKey:@"AppleInterfaceStyle"];
     if ([osxMode isEqualToString:@"Dark"]) {
-        env[@"DockerInfoDarkMode"] = @YES;
+        env[@"BitBarDarkMode"] = @YES;
     }
     //NSNumber *memoryUsed = [NSNumber numberWithInt:[self report_memory2]];
     

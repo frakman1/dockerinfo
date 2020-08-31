@@ -59,8 +59,13 @@
   
   [[NSNotificationCenter defaultCenter] removeObserver:self name:NSFileHandleDataAvailableNotification object:stdoutPipe.fileHandleForReading];
   
-  NSData *stdoutData = [[stdoutPipe fileHandleForReading] readDataToEndOfFile];
-  NSData *stderrData = [[stderrPipe fileHandleForReading] readDataToEndOfFile];
+  NSFileHandle *stdoutPipeFh = [stdoutPipe fileHandleForReading];
+  NSFileHandle *stderrPipeFh = [stderrPipe fileHandleForReading];
+  NSData *stdoutData = [stdoutPipeFh readDataToEndOfFile];
+  NSData *stderrData = [stderrPipeFh readDataToEndOfFile];
+  
+  [stdoutPipeFh closeFile];
+  [stderrPipeFh closeFile];
   
   NSString *content = [[NSString alloc] initWithData:stdoutData encoding:NSUTF8StringEncoding];
   
