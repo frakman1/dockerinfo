@@ -313,6 +313,8 @@
     env[@"DockerInfoBuild"] = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
     env[@"DockerInfoVersion"] = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
       
+    //NSLog(@"CFBundleShortVersionString (DockerInfoVersion) : %@",env[@"DockerInfoVersion"]);
+    //NSLog(@"kCFBundleVersionKey (DockerInfoBuild) : %@",env[@"DockerInfoBuild"]);
     // Determine if Mac is in Dark Mode
     NSString *osxMode = [[NSUserDefaults standardUserDefaults] stringForKey:@"AppleInterfaceStyle"];
     if ([osxMode isEqualToString:@"Dark"]) {
