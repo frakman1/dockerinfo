@@ -88,8 +88,11 @@
   [targetMenu addItem:NSMenuItem.separatorItem];
   
   NSString *versionString = [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"];
-  
   NSMenuItem *versionMenuitem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"🏷️ Version: %@", versionString] action:nil keyEquivalent:@""];
+  NSString *BuildString = [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleVersion"];
+  NSMenuItem *buildMenuitem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"🏗 Build: %@", BuildString] action:nil keyEquivalent:@""];
+
+  
 /*
   if (!DEFS.userConfigDisabled) {
     versionMenuitem.alternate = YES;
@@ -119,6 +122,8 @@
   NSMenuItem *fraksoftMI = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"🆔 Docker Info by FrakSoft"] action:nil keyEquivalent:@""];
   [targetMenu addItem:fraksoftMI];
   [targetMenu addItem:versionMenuitem];
+  [targetMenu addItem:buildMenuitem];
+
 
 //
 //  // add troubleshooting item
@@ -128,7 +133,11 @@
 //  ADD_MENU(@"Report an Issue…",openHomepage,@"i",self);
 //  
   // quit menu
-  ADD_MENU(@"❌ Quit",quit, @"q",self);
+  //ADD_MENU(@"❌ Quit",quit, @"q",self);
+  NSMenuItem* quitMenuItem = [[NSMenuItem alloc] initWithTitle:@"❌ Quit" action:@selector(quit) keyEquivalent:@"q"];
+  [quitMenuItem setTarget:self];
+  [menu addItem:quitMenuItem];
+
 }
 
 - (void) quit {
