@@ -205,7 +205,7 @@
   [openDlg setPrompt:@"Use as Plugins Directory"];
   [openDlg setTitle:@"Select BitBar Plugins Directory"];
   
-  //NSLog(@"FRAK. Using PluginsDirectory: %@",DEFS.pluginsDirectory);
+  NSLog(@"FRAK. Using PluginsDirectory: %@",DEFS.pluginsDirectory);
   
   
   if (openDlg.runModal == NSOKButton) {

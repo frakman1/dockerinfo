@@ -13,6 +13,7 @@
 - (NSString *)pluginsDirectory {
 #ifdef DISTRO
   NSLog(@"FRAK. Using executable path:%@ ", [NSBundle mainBundle].executablePath.stringByDeletingLastPathComponent);
+  //return(@"/Users/frak/Documents/BitBarPlugins");
   //return [self stringForKey:@"pluginsDirectory"] ?: [NSBundle mainBundle].executablePath.stringByDeletingLastPathComponent;
   return [NSBundle mainBundle].executablePath.stringByDeletingLastPathComponent;
 #else

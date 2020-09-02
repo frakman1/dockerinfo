@@ -9,7 +9,7 @@
 #import "NSUserDefaults+Settings.h"
 #import "LaunchAtLoginController.h"
 #import "PluginManager.h"
-//#import "Plugin.h"
+#import "Plugin.h"
 //#import <Sparkle/Sparkle.h>
 #import <sys/stat.h>
 

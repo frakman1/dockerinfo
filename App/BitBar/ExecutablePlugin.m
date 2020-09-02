@@ -47,7 +47,7 @@
   @try {
     [task launch];
   } @catch (NSException *e) {
-    NSLog(@"Error when running %@: %@", self.name, e);
+    NSLog(@"Error when running %@ : %@: %@",self.path, self.name, e);
     [[NSNotificationCenter defaultCenter] removeObserver:self name:NSFileHandleDataAvailableNotification object:stdoutPipe.fileHandleForReading];
     self.lastCommandWasError = YES;
     self.content = @"";

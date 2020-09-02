@@ -428,10 +428,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 228B2F281EFFF73800B497F2 /* Build configuration list for PBXNativeTarget "Dockerinfo" */;
 			buildPhases = (
+				227EB65224FDB9460077F96E /* ShellScript */,
 				228B2F0A1EFFF73800B497F2 /* Sources */,
 				228B2F201EFFF73800B497F2 /* Resources */,
 				228B2F241EFFF73800B497F2 /* Frameworks */,
-				227EB65224FDB9460077F96E /* ShellScript */,
 			);
 			buildRules = (
 			);

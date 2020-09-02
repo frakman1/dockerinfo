@@ -114,7 +114,7 @@
   SEL sel = params[@"href"] ? @selector(performMenuItemHREFAction:)
           : params[@"bash"] ? @selector(performMenuItemOpenTerminalAction:)
           : params[@"imsg"] ? @selector(performMenuItemiMessageAction:)
-          : params[@"quit"] ? @selector(performMenuItemQuitAction:)
+
           : params[@"refresh"] ? @selector(performRefreshNow):
     nil;
 
@@ -334,6 +334,18 @@ NSFont    * font = [self validFont:params[@"font"] size:size]
       
       [[NSApplication sharedApplication] terminate:self];
     }
+  
+    if([terminal isEqual: @"copy"])
+    {
+      NSLog(@"Copying text...");
+      NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
+      [pasteboard clearContents];
+      NSString *tocopy = [NSString stringWithFormat:@"%@", [params objectForKey:@"param1"]] ?: @"" ;
+      NSLog(@"Copy Param: %@",tocopy);
+      [pasteboard setString: tocopy forType:NSStringPboardType];
+      return;
+    }
+  
     if([terminal isEqual: @"false"]){
       NSLog(@"Args: %@", args);
       [params setObject:bash forKey:@"bash"];
@@ -361,7 +373,7 @@ NSFont    * font = [self validFont:params[@"font"] size:size]
 
 - (void)performMenuItemQuitAction:(NSMenuItem *)menuItem {
   NSLog(@"Got a QUIT");
-  
+  //not called?
   [[NSApplication sharedApplication] terminate:self];
 }
 
