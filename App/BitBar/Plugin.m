@@ -371,14 +371,6 @@ NSFont    * font = [self validFont:params[@"font"] size:size]
   [self performiMessageAction:menuItem.representedObject];
 }
 
-- (void)performMenuItemQuitAction:(NSMenuItem *)menuItem {
-  NSLog(@"Got a QUIT");
-  //not called?
-  [[NSApplication sharedApplication] terminate:self];
-}
-
-
-
 - (void) rebuildMenuForStatusItem:(NSStatusItem*)statusItem {
   
   // build the menu
@@ -458,7 +450,7 @@ NSFont    * font = [self validFont:params[@"font"] size:size]
 
   //[self.MemoryUsedMenuItem setTitle: [NSString stringWithFormat:@"Memory: %d MB", [self report_memory]]];
 
-  [self addAdditionalMenuItems:menu];
+  //[self addAdditionalMenuItems:menu];
   [self addDefaultMenuItems:menu];
   
   // set the menu

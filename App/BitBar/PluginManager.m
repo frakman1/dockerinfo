@@ -69,12 +69,13 @@
   
   NSMenu *targetMenu;
   NSMenuItem *moreItem = nil;
+  NSMenuItem* refreshMenuItem = [[NSMenuItem alloc] initWithTitle:@"🔄 Refresh" action:@selector(reset) keyEquivalent:@"r"];
+  [refreshMenuItem setTarget:self];
+  [menu addItem:refreshMenuItem];
   
   if (submenu) {
-    
     NSMenu *moreMenu = [NSMenu.alloc initWithTitle:@"Preferences"];
-
-    moreItem = [NSMenuItem.alloc initWithTitle:@"Preferences" action:nil keyEquivalent:@""];
+    moreItem = [NSMenuItem.alloc initWithTitle:@"🅿️ Preferences" action:nil keyEquivalent:@""];
     moreItem.submenu = moreMenu;
     [menu addItem:moreItem];
     targetMenu = moreMenu;
@@ -82,7 +83,7 @@
   } else targetMenu = menu;
   
   // add reset, aka refreshMenuItem
-  ADD_MENU(@"Refresh all", reset, @"r", self);
+  //ADD_MENU(@"Refresh", reset, @"r", self);
 
   [targetMenu addItem:NSMenuItem.separatorItem];
   
@@ -245,7 +246,13 @@
 }
 
 - (void) reset {
-  
+  for (Plugin *plugin in _plugins)
+  {
+    [plugin performRefreshNow];
+  }
+
+
+  /*
   // remove all status items
   for (Plugin *plugin in _plugins) {
    [self.statusBar removeStatusItem:plugin.statusItem];
@@ -255,7 +262,7 @@
   _plugins = nil;
   [self.statusBar removeStatusItem:self.defaultStatusItem];
   [self setupAllPlugins];
-  
+  */
 }
 
 - (void) clearPathAndReset {

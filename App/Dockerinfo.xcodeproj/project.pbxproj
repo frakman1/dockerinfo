@@ -13,6 +13,7 @@
 		227EB64D24FAD7AA0077F96E /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02C1833274100409786 /* PluginManager.m */; };
 		227EB64E24FAD7AB0077F96E /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02C1833274100409786 /* PluginManager.m */; };
 		227EB64F24FAD7AB0077F96E /* PluginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE02C1833274100409786 /* PluginManager.m */; };
+		227EB65524FFEF070077F96E /* NSColor+ANSI.m in Sources */ = {isa = PBXBuildFile; fileRef = 227EB65324FFEF070077F96E /* NSColor+ANSI.m */; };
 		228B2F0B1EFFF73800B497F2 /* NSString+Emojize.m in Sources */ = {isa = PBXBuildFile; fileRef = AE7303D81C935BDE00AF5499 /* NSString+Emojize.m */; };
 		228B2F0C1EFFF73800B497F2 /* AHProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = F8D03BB21C3D95E600A64968 /* AHProxy.m */; };
 		228B2F0D1EFFF73800B497F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 05DAE006183323DD00409786 /* AppDelegate.m */; };
@@ -135,6 +136,8 @@
 		05DAE02E1833276C00409786 /* PluginManagerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = PluginManagerTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		227EB64824FA3CB40077F96E /* Dockerinfo.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Dockerinfo.entitlements; sourceTree = "<group>"; };
 		227EB64B24FA72C70077F96E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		227EB65324FFEF070077F96E /* NSColor+ANSI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+ANSI.m"; sourceTree = "<group>"; };
+		227EB65424FFEF070077F96E /* NSColor+ANSI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+ANSI.h"; sourceTree = "<group>"; };
 		228B2F2B1EFFF73800B497F2 /* Dockerinfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dockerinfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		228B2F371EFFF73900B497F2 /* Dockerinfo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Dockerinfo-Info.plist"; path = "/Users/frak/Documents/XcodeProjects/bitbar/bitbar_master/bitbar/App/Dockerinfo-Info.plist"; sourceTree = "<absolute>"; };
 		22A8C7DE1F08BFC800DCB475 /* PFMoveApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PFMoveApplication.h; sourceTree = "<group>"; };
@@ -363,6 +366,8 @@
 		AE3C16771C93B135009AF7CA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				227EB65424FFEF070077F96E /* NSColor+ANSI.h */,
+				227EB65324FFEF070077F96E /* NSColor+ANSI.m */,
 				AE7303EB1C93984C00AF5499 /* NSString+ANSI.h */,
 				AE7303EC1C93984C00AF5499 /* NSString+ANSI.m */,
 			);
@@ -637,6 +642,7 @@
 				228B2F1C1EFFF73800B497F2 /* NSString+ANSI.m in Sources */,
 				228B2F1D1EFFF73800B497F2 /* LaunchAtLoginController.m in Sources */,
 				228B2F1E1EFFF73800B497F2 /* AHProxySettings.m in Sources */,
+				227EB65524FFEF070077F96E /* NSColor+ANSI.m in Sources */,
 				228B2F1F1EFFF73800B497F2 /* DTTimePeriod.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
