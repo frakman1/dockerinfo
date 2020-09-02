@@ -35,7 +35,7 @@
   
   //NSMenuItem *versionMenuitem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"BaseVersion: %@", versionString] action:nil keyEquivalent:@""];
 
-    [self.statusItem setToolTip:([NSString stringWithFormat:@"Dockerinfo %@ \nMenubar Docker Dashboard ", versionString] )];
+    [self.statusItem setToolTip:([NSString stringWithFormat:@"Docker Info %@ \nMenubar Docker Dashboard ", versionString] )];
 //[NSString stringWithFormat:@"Dockerinfo %@ \nMenubar Docker Dashboard", versionString]
     // build the menu
     [self rebuildMenuForStatusItem:_statusItem]; _statusItem; });
@@ -442,7 +442,7 @@ NSFont    * font = [self validFont:params[@"font"] size:size]
   
   if (self.lastUpdated != nil) {
     
-    self.lastUpdatedMenuItem = [NSMenuItem.alloc initWithTitle:@"Updated just now" action:nil keyEquivalent:@""];
+    self.lastUpdatedMenuItem = [NSMenuItem.alloc initWithTitle:@"⚡ Updated just now" action:nil keyEquivalent:@""];
     [menu addItem:self.lastUpdatedMenuItem];
   }
   self.MemoryUsedMenuItem = [NSMenuItem.alloc initWithTitle:@"Memory" action:nil keyEquivalent:@""];
@@ -758,7 +758,7 @@ NSFont    * font = [self validFont:params[@"font"] size:size]
   
   [self.statusItem setHighlightMode:YES];
 
-  [self.lastUpdatedMenuItem setTitle:self.lastUpdated ? [NSString stringWithFormat:@"Updated %@", self.lastUpdatedString] : @"Refreshing…"];
+  [self.lastUpdatedMenuItem setTitle:self.lastUpdated ? [NSString stringWithFormat:@"⏳ Updated %@", self.lastUpdatedString] : @"Refreshing…"];
   [self.MemoryUsedMenuItem setTitle: [NSString stringWithFormat:@"Memory Used: %d MB", [self report_memory]]];
   self.MemoryUsedMenuItem.alternate = YES;
   self.MemoryUsedMenuItem.keyEquivalentModifierMask = NSAlternateKeyMask;

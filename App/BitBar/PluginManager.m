@@ -89,7 +89,7 @@
   
   NSString *versionString = [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"];
   
-  NSMenuItem *versionMenuitem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"BaseVersion: %@", versionString] action:nil keyEquivalent:@""];
+  NSMenuItem *versionMenuitem = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"🏷️ Version: %@", versionString] action:nil keyEquivalent:@""];
 /*
   if (!DEFS.userConfigDisabled) {
     versionMenuitem.alternate = YES;
@@ -116,7 +116,7 @@
  */
   // open at login, aka openAtLoginMenuItem
   [ADD_MENU(@"Open at Login", toggleOpenAtLogin:, nil, self) setState:_launchAtLoginController.launchAtLogin];
-  NSMenuItem *fraksoftMI = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"DockerInfo by FrakSoft"] action:nil keyEquivalent:@""];
+  NSMenuItem *fraksoftMI = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"🆔 Docker Info by FrakSoft"] action:nil keyEquivalent:@""];
   [targetMenu addItem:fraksoftMI];
   [targetMenu addItem:versionMenuitem];
 
@@ -128,7 +128,7 @@
 //  ADD_MENU(@"Report an Issue…",openHomepage,@"i",self);
 //  
   // quit menu
-  ADD_MENU(@"Quit",quit, @"q",self);
+  ADD_MENU(@"❌ Quit",quit, @"q",self);
 }
 
 - (void) quit {
