@@ -75,7 +75,7 @@
   
   if (submenu) {
     NSMenu *moreMenu = [NSMenu.alloc initWithTitle:@"Preferences"];
-    moreItem = [NSMenuItem.alloc initWithTitle:@"🅿️ Preferences" action:nil keyEquivalent:@""];
+    moreItem = [NSMenuItem.alloc initWithTitle:@"ℹ️ About" action:nil keyEquivalent:@""];
     moreItem.submenu = moreMenu;
     [menu addItem:moreItem];
     targetMenu = moreMenu;
@@ -117,12 +117,33 @@
     ADD_MENU(@"Check for Updates…", checkForUpdates:, nil, [SUUpdater sharedUpdater]);
   }
  */
-  // open at login, aka openAtLoginMenuItem
-  [ADD_MENU(@"Open at Login", toggleOpenAtLogin:, nil, self) setState:_launchAtLoginController.launchAtLogin];
+
   NSMenuItem *fraksoftMI = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"🆔 Docker Info by FrakSoft"] action:nil keyEquivalent:@""];
+  NSMenuItem *made = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"🛠️ Made with ❤️ at the Frak Lab"] action:@selector(openLinkedInPage) keyEquivalent:@""];
+  NSMenuItem *made2 = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"🛠️ Made with 💉💦 & 😭 in Hell"] action:@selector(openLinkedInPage) keyEquivalent:@""];
+  made2.alternate = YES;
+  made2.keyEquivalentModifierMask = NSAlternateKeyMask;
+  
+  made.toolTip = @"🌐 Clicking here will open up my LinkedIn profile";
+  made2.toolTip = @"🌐 Clicking here will open up my LinkedIn profile";
+  [made setTarget:self]; //This makes it highlighted and clickable
+  [made2 setTarget:self]; //This makes it highlighted and clickable
+  NSMenuItem *DockerInfoImg = [ [NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@""] action:@selector(openGithubPage) keyEquivalent:@""];
+  [ DockerInfoImg setImage: [ NSImage imageNamed:@"AboutIcon"] ];
+  DockerInfoImg.indentationLevel = [@"3" intValue];
+  DockerInfoImg.enabled=YES;
+  [DockerInfoImg setTarget:self]; //This makes it highlighted and clickable
+  DockerInfoImg.toolTip = @"🌐 Clicking here will take you to this project's GitHub page";
+  [targetMenu addItem:DockerInfoImg];
   [targetMenu addItem:fraksoftMI];
   [targetMenu addItem:versionMenuitem];
   [targetMenu addItem:buildMenuitem];
+  [targetMenu addItem:made];
+  [targetMenu addItem:made2];
+  [targetMenu addItem:NSMenuItem.separatorItem];
+  // open at login, aka openAtLoginMenuItem
+  [ADD_MENU(@"Open at Login", toggleOpenAtLogin:, nil, self) setState:_launchAtLoginController.launchAtLogin];
+
 
 
 //
@@ -144,7 +165,8 @@
   [NSApp terminate:[NSApplication sharedApplication]];
 }
 #define WSPACE NSWorkspace.sharedWorkspace
-
+- (void) openGithubPage { [WSPACE openURL:[NSURL URLWithString:@"https://github.com/frakman1/dockerinfo"]];}
+- (void) openLinkedInPage { [WSPACE openURL:[NSURL URLWithString:@"https://www.linkedin.com/in/fraknuaimy"]];}
 - (void) openReportIssuesPage {
   [WSPACE openURL:[NSURL URLWithString:@"https://github.com/matryer/bitbar/issues"]];
 }

@@ -539,22 +539,27 @@ NSFont    * font = [self validFont:params[@"font"] size:size]
       return;
     }
     
-    if (params[@"href"] || params[@"bash"] || params[@"imsg"] || params[@"refresh"]) {
+    if (params[@"href"] || params[@"bash"] || params[@"imsg"] || params[@"refresh"])
+    {
       self.statusItem.menu = nil;
       self.statusItem.action = @selector(statusItemClicked);
       self.statusItem.target = self;
-    } else if (!self.statusItem.menu) {
+    } else if (!self.statusItem.menu)
+    {
       self.statusItem.action = NULL;
       self.statusItem.target = nil;
       [self rebuildMenuForStatusItem:self.statusItem];
     }
     
     // Add image if present
-    if (params[@"templateImage"]) {
+    if (params[@"templateImage"])
+    {
       self.statusItem.image = [self createImageFromBase64:params[@"templateImage"] isTemplate:true];
-    }else if (params[@"image"]) {
+    }else if (params[@"image"])
+    {
       self.statusItem.image = [self createImageFromBase64:params[@"image"] isTemplate:false];
-    } else {
+    } else
+    {
       self.statusItem.image = nil;
     }
     
@@ -759,7 +764,7 @@ NSFont    * font = [self validFont:params[@"font"] size:size]
   [self.statusItem setHighlightMode:YES];
 
   [self.lastUpdatedMenuItem setTitle:self.lastUpdated ? [NSString stringWithFormat:@"⏳ Updated %@", self.lastUpdatedString] : @"Refreshing…"];
-  [self.MemoryUsedMenuItem setTitle: [NSString stringWithFormat:@"Memory Used: %d MB", [self report_memory]]];
+  [self.MemoryUsedMenuItem setTitle: [NSString stringWithFormat:@"🐏 Memory Used: %d MB", [self report_memory]]];
   self.MemoryUsedMenuItem.alternate = YES;
   self.MemoryUsedMenuItem.keyEquivalentModifierMask = NSAlternateKeyMask;
 
