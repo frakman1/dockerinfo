@@ -327,7 +327,7 @@
       [plugin setPath:[self.path stringByAppendingPathComponent:file]];
       [plugin setName:file];
       [plugin.statusItem setTitle:@"🔄"]; //FRAK startup
-      [plugin.statusItem setToolTip:([NSString stringWithFormat:@"Dockerinfo.\nLoading. Please wait."] )];
+      [plugin.statusItem setToolTip:([NSString stringWithFormat:@"Docker Info.\nLoading. Please wait."] )];
       //NSLog(@"Dockerinfo. Please wait.");
       //NSLog(@"File:%@",pluginFiles);
       

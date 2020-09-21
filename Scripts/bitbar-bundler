@@ -2,7 +2,6 @@
 [ "$#" -ge "2" ] || { echo "usage: $0 /path/to/BitBar.app /path/to/first-plugin /path/to/second-plugin ..."; exit 1; }
 
 codesign --deep --force --verbose --sign - "$1"
-
 app="$1/Contents/MacOS/"
 
 shift
@@ -12,3 +11,6 @@ cp -v "$@" "$app"
 
 # ensure they are executable
 chmod -R +x "$app"
+
+#Added by FRAK
+codesign --force --deep --verify --verbose --sign "Developer ID Application: Farqed Al Nuaimy (7G2GKABE9F)" "$app"../../

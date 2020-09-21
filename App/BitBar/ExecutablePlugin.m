@@ -128,6 +128,9 @@
 
 - (void)performRefreshNow {
   if (self.pluginIsVisible) {
+    self.content = @"🔄"; //FRAK updating
+    [self.statusItem setToolTip:([NSString stringWithFormat:@"Docker Info.\nRefreshing. Please wait."] )];
+
     self.statusItem.enabled = NO;
   }
   
@@ -154,7 +157,7 @@
         strongSelf.lastUpdated = NSDate.new;
         //NSLog(@"3 ");
         NSString *versionString = [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"];
-        [self.statusItem setToolTip:([NSString stringWithFormat:@"Docker Info %@\nMenubar Docker Dashboard", versionString] )];
+        [self.statusItem setToolTip:([NSString stringWithFormat:@"Docker Info %@", versionString] )];
         //NSLog(@"Dockerinfo vvv.Menubar Docker Dashboard");
         
         [strongSelf rebuildMenuForStatusItem:strongSelf.statusItem];
