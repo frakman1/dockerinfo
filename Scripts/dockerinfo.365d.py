@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/local/bin/python
 # -*- encoding: utf-8 -*-
 
 # <bitbar.title>DockerInfo</bitbar.title>
@@ -300,15 +300,14 @@ def print_containers(input_mystring, local=True, size=8, sess=None, ssh='passwor
         #down_containers = total-up
         
         display(c.END+'{}{}'.format(ARROW,'📦 Containers{} {} {}'.format(c.YELLOW + '[' + str(total_containers) + ']' + c.END ,c.GREEN + str(up_containers) + '⇧'  + c.END,c.RED  + str(down_containers) + '⇩' + c.END))+c.END)
-        display('--'+c.END+'{:<13s}'.format('  CONTAINER-ID') +'{:<25s}'.format('  IMAGE')+'{:<22s}'.format('  COMMAND')+'{:<28s}'.format('STATUS')+'{:<21s}'.format('NAME')+'{:>20s}'.format('SIZE                  ')+c.END+" | size={} trim=false font='Courier New'".format(size))
+        display('--'+c.END+'   '+'{: <12s}'.format('CONTAINER-ID') +' '+'{: <20s}'.format('IMAGE')+' '+'{: <20s}'.format('COMMAND')+' '+'{: <20s}'.format('STATUS')+' '+'{: <20s}'.format('NAME')+' '+'{: <20s}'.format('SIZE')+c.END+" | size={} trim=false font='Courier New'".format(size))
     elif ssh=='passwordless':
         up = int(run_script(DOCKERPSUP_QUICK_SSH.replace('<ip>',ip).replace('<user>',user)  + ' | wc -l | xargs'))
         total = int(run_script(DOCKERPS_QUICK_SSH.replace('<ip>',ip).replace('<user>',user)  + ' | wc -l | xargs')) 
         down = total-up
-
         
         display(c.END+'{}{}'.format(ARROW,'📦 Containers{} {} {}'.format(c.YELLOW + '[' + str(total) + ']' + c.END ,c.GREEN + str(up) + '⇧'  + c.END, c.RED  + str(down) + '⇩' + c.END))+c.END, local=False)
-        display('--'+c.END+'{:<13s}'.format('  CONTAINER-ID')+'{:<31s}'.format('  IMAGE')+'{:<22s}'.format('  COMMAND')+'{:<28s}'.format('   STATUS')+'{:>20s}'.format('NAME')+c.END+" | size={} trim=false font='Courier New'".format(size), local=False)
+        display('--'+c.END+'   '+'{: <12s}'.format('CONTAINER-ID')+' '+'{: <30s}'.format('IMAGE')+' '+'{: <20s}'.format('COMMAND')+' '+'{: <20s}'.format('STATUS')+' '+'{: <15s}'.format('NAME')+c.END+" | size={} trim=false font='Courier New'".format(size), local=False)
     else: #pexpect (ssh+password)
         cmd_output = run_remote_cmd(DOCKERPS_QUICK + ' | wc -l | xargs', child)
         for line in cmd_output.splitlines():
@@ -325,10 +324,10 @@ def print_containers(input_mystring, local=True, size=8, sess=None, ssh='passwor
             continue
         if local or ssh=='passwordless':
             if ssh=='passwordless':
-                display('--'+c.GREY+str(i+1).zfill(2)+' '+c.END+c.BLUE+'{:<13s}'.format(split_line[0])+c.END+c.YELLOW+'{:<31s}'.format(split_line[1])+c.END+c.RED+'{:<22s}'.format(split_line[2])+c.END+c.MAGENTA+'{:<28s}'.format(split_line[3])+c.END+c.GREEN+'{:>20s}'.format(split_line[4])+c.END+" | size={} trim=false font='Courier New'".format(size), local=False)
+                display('--'+c.GREY+str(i+1).zfill(2)+' '+c.END+c.BLUE+'{: <12s}'.format(split_line[0][:12])+c.YELLOW+' '+'{: <30s}'.format(split_line[1][:30])+c.RED+' '+'{: <20s}'.format(split_line[2][:20])+c.MAGENTA+' '+'{: <20s}'.format(split_line[3][:20])+c.GREEN+' '+'{: <15s}'.format(split_line[4][:15])+c.END+" | size={} trim=false font='Courier New'".format(size), local=False)
                 
-            else:
-                display('--'+c.GREY+str(i+1).zfill(2)+' '+c.END+c.BLUE+'{:<13s}'.format(split_line[0])+c.YELLOW+'{:<31s}'.format(split_line[1])+c.RED+'{:<22s}'.format(split_line[2])+c.MAGENTA+'{:<28s}'.format(split_line[3])+c.GREEN+'{:<20s}'.format(split_line[4])+c.CYAN+'{:>20s}'.format(split_line[5])+c.END+" | size={} trim=false font='Courier New'".format(size))
+            else:  
+                display('--'+c.GREY+str(i+1).zfill(2)+' '+c.END+c.BLUE+'{: <12s}'.format(split_line[0][:12])+c.YELLOW+' '+'{: <20s}'.format(split_line[1][:20])+c.RED+' '+'{: <20s}'.format(split_line[2][:20])+c.MAGENTA+' '+'{: <20s}'.format(split_line[3][:20])+c.GREEN+' '+'{: <20s}'.format(split_line[4][:20])+c.CYAN+' '+'{: <20s}'.format(split_line[5][:20])+c.END+" | size={} trim=false font='Courier New'".format(size))
 
         else:
             display('--'+c.GREY+str(i+1).zfill(2)+' '+c.END+c.BLUE+'{:<13s}'.format(split_line[0])+c.YELLOW+'{:<31s}'.format(split_line[1])+c.RED+'{:<22s}'.format(split_line[2])+c.MAGENTA+'{:<28s}'.format(split_line[3])+c.GREEN+'{:>20s}'.format(split_line[4])+c.END+" | size={} trim=false font='Courier New'".format(size))
@@ -497,14 +496,14 @@ def print_images(input_mystring, local=True, size=8, ssh='password'):
             if num:
                 break
         display(c.END+'{}{}'.format(ARROW,'🖼️ Images ({})'.format(c.GREEN +str(num)+c.END))+c.END)
-    display('-- '+c.END+'{:<40s}'.format('   REPOSITORY                          ')+'{:<15s}'.format('   TAG         ')+'{:<15s}'.format('   ID')+'{:<15s}'.format('   CREATED')+'{:<10s}'.format('   SIZE')+c.END+" |  size={} trim=flase font='Courier New'".format(size))
+    display('-- '+c.END+'   '+'{: <20s}'.format('REPOSITORY')+' '+'{: <15s}'.format('TAG')+' '+'{:<15s}'.format('ID')+' '+'{: <15s}'.format('CREATED')+' '+'{: <10s}'.format('SIZE')+c.END+" |  size={} trim=flase font='Courier New'".format(size))
     for i, line in enumerate(input_mystring.splitlines()):
         if '--format' in line or '{{' in line :
             continue
         split_line = line.split("^^")
         if len(split_line) < 5:
             continue
-        display('-- '+c.GREY+str(i+1).zfill(2)+' '+c.END+c.BLUE+'{:<40s}'.format(split_line[0])+c.RED+'{:<15s}'.format(split_line[1])+c.YELLOW+'{:<15s}'.format(split_line[2])+c.MAGENTA+'{:<15s}'.format(split_line[3])+c.GREEN+'{:<10s}'.format(split_line[4])+c.END+" | size={} trim=flase font='Courier New'".format(size))
+        display('-- '+c.GREY+str(i+1).zfill(2)+' '+c.END+c.BLUE+'{: <20s}'.format(split_line[0][:20])+c.RED+' '+'{: <15s}'.format(split_line[1][:15])+c.YELLOW+' '+'{: <15s}'.format(split_line[2][:15])+c.MAGENTA+' '+'{: <15s}'.format(split_line[3][:15])+c.GREEN+' '+'{: <10s}'.format(split_line[4][:10])+c.END+" | size={} trim=flase font='Courier New'".format(size))
         
         if local or ssh=='passwordless':
             #check if image is in use by a container. If so, list those containers
